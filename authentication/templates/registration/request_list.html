@@ -1,0 +1,20 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+    <h1>Список заявок на регистрацию</h1>
+
+    {% if reqs %}
+        <ul>
+            {% for req in reqs %}
+                <li>
+                    {{ req.user.username }}: {{ req.message }}
+                    {{ req.user.email }}: {{ req.user.is_employee }}
+                    <a href="{% url 'authenticate:request-approve' req.pk %}">Одобрить</a>
+                    <a href="{% url 'authenticate:request-decline' req.pk %}">Отклонить</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нет заявок на регистрацию</p>
+    {% endif %}
+{% endblock %}
