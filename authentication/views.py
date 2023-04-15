@@ -6,6 +6,7 @@ from django.contrib import auth
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegistrationRequest, CustomUser
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth import authenticate, login, logout
 
 
 @require_http_methods(['GET', 'POST'])
@@ -29,28 +30,49 @@ def register(request):
     return render(request, "authentication/registration.html", context)
 
 
-def login(request):
+@require_http_methods(['GET', 'POST'])
+def login_view(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             username = request.POST['username']
             password = request.POST['password']
-            user = auth.authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)
             if user:
-                # Проверяем одобрена ли заявка пользователя
-                registration_request = user.registration_request
-                if registration_request and registration_request.approved:
-                    auth.login(request, user)
-                    return redirect('authenticate:main-employee')
-                else:
-                    return redirect('authenticate:register-wait')
+                if user.is_superuser:
+                    login(request, user)
+                    return redirect('authenticate:main-admin')
+                elif user.is_employee:
+                    registration_request = user.registration_request
+                    if registration_request and registration_request.approved:
+                        login(request, user)
+                        return redirect('authenticate:main-employee')
+                    else:
+                        return redirect('authenticate:register-wait')
+                elif user.is_manager:
+                    login(request, user)
+                    return redirect('authenticate:main-manager')
     else:
         form = CustomAuthenticationForm()
     context = {
         'form': form,
     }
+    return render(request, 'authentication/login.html', context)
 
-    return render(request, 'registration/login.html', context, )
+
+@login_required
+def main_admin(request):
+    return render(request, 'authentication/main_admin.html')
+
+
+@login_required
+def main_employee(request):
+    return render(request, 'authentication/main_employee.html')
+
+
+@login_required
+def main_manager(request):
+    return render(request, 'authentication/main_manager.html')
 
 
 @login_required(login_url='authenticate:login')

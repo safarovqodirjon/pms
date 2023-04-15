@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
 
 
 class RegistrationRequest(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='registration_request')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='registration_request', null=True)
     message = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)

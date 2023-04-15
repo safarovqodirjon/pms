@@ -6,14 +6,20 @@ from django.contrib.auth.decorators import user_passes_test
 app_name = 'authenticate'
 
 urlpatterns = [
-    # Маршрут для регистрации
+    # Маршрут для регистрации и входа
     path('', views.register, name='register'),
     path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
 
-    # Маршрут для входа в систему
-    path('login/', views.login, name='login'),
-    path('showreguest/', user_passes_test(lambda u: u.is_superuser)(views.request_list), name='register-request'),
-    path('showreguest/<int:request_id>/', user_passes_test(lambda u: u.is_superuser)(views.approve_request),
+    # Маршрут для основной страници
+    path('main-admin/', views.main_admin, name='main-admin'),
+    path('main-employee/', views.main_employee, name='main-employee'),
+    path('main-manager/', views.main_manager, name='main-manager'),
+
+    # маршрут для администратора по приему заявок
+    path('main-admin/show-reguest/', user_passes_test(lambda u: u.is_superuser)(views.request_list),
+         name='register-request'),
+    path('show-reguest/<int:request_id>/', user_passes_test(lambda u: u.is_superuser)(views.approve_request),
          name='request-approve'),
 
     path('showreguest/<int:request_id>/', user_passes_test(lambda u: u.is_superuser)(views.decline_request),

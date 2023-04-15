@@ -8,6 +8,10 @@ class UserRegisterForm(UserCreationForm):
         model = CustomUser
         fields = ['first_name', 'last_name', 'username',
                   'email', 'is_employee', 'is_manager', 'password1', 'password2']
+        widgets = {
+            'is_employee': forms.RadioSelect(attrs={'id': 'employee'}),
+            'is_manager': forms.RadioSelect(attrs={'id': 'manager'}),
+        }
 
 
 class CustomAuthenticationForm(AuthenticationForm):
