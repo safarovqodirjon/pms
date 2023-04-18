@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import CustomAuthenticationForm, UserRegisterForm
 from django.views.decorators.http import require_http_methods
-from django.contrib import auth
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegistrationRequest, CustomUser
 from django.contrib.auth.decorators import user_passes_test
@@ -27,7 +26,7 @@ def register(request):
     context = {
         'form': form,
     }
-    return render(request, "authentication/registration.html", context)
+    return render(request, "authenticate/registration.html", context)
 
 
 @require_http_methods(['GET', 'POST'])
@@ -41,38 +40,23 @@ def login_view(request):
             if user:
                 if user.is_superuser:
                     login(request, user)
-                    return redirect('authenticate:main-admin')
+                    return redirect('management:admin-main')
                 elif user.is_employee:
                     registration_request = user.registration_request
                     if registration_request and registration_request.approved:
                         login(request, user)
-                        return redirect('authenticate:main-employee')
+                        return redirect('management:admin-main')
                     else:
                         return redirect('authenticate:register-wait')
                 elif user.is_manager:
                     login(request, user)
-                    return redirect('authenticate:main-manager')
+                    return redirect('management:main-manager')
     else:
         form = CustomAuthenticationForm()
     context = {
         'form': form,
     }
-    return render(request, 'authentication/login.html', context)
-
-
-@login_required
-def main_admin(request):
-    return render(request, 'authentication/main_admin.html')
-
-
-@login_required
-def main_employee(request):
-    return render(request, 'authentication/main_employee.html')
-
-
-@login_required
-def main_manager(request):
-    return render(request, 'authentication/main_manager.html')
+    return render(request, 'authenticate/login.html', context)
 
 
 @login_required(login_url='authenticate:login')
@@ -117,11 +101,7 @@ def decline_request(request, request_id):
 
 
 class RegistrationWaitView(TemplateView):
-    template_name = 'registration/register_wait.html'
-
-
-class MainEmployeeView(TemplateView):
-    template_name = 'registration/register_employee_view.html'
+    template_name = 'authenticate/register_wait.html'
 
 #
 # @login_required(login_url='authenticate:login')

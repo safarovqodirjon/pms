@@ -1,0 +1,48 @@
+{% load static %}
+<div class="row">
+    {% for el in '123' %}
+        <div class="col-lg-4 col-md-6 mb-20">
+            <div class="card-box height-100-p pd-20 min-height-200px">
+                <div class="d-flex justify-content-between pb-10">
+                    <div class="h5 mb-0">Top Doctors</div>
+                </div>
+                <div class="user-list">
+                    <ul>
+                        {% for el in '1234' %}
+                            <li class="d-flex align-items-center justify-content-between">
+                                <div class="name-avatar d-flex align-items-center pr-2">
+                                    <div class="avatar mr-2 flex-shrink-0">
+                                        <img
+                                                src="{% static 'vendors/images/photo4.jpg' %}"
+                                                class="border-radius-100 box-shadow"
+                                                width="50"
+                                                height="50"
+                                                alt=""
+                                        />
+                                    </div>
+                                    <div class="txt">
+												<span
+                                                        class="badge badge-pill badge-sm"
+                                                        data-bgcolor="#e7ebf5"
+                                                        data-color="#265ed7"
+                                                >4.9</span
+                                                >
+                                        <div class="font-14 weight-600">Dr. Neil Wagner</div>
+                                        <div class="font-12 weight-500" data-color="#b2b1b6">
+                                            Pediatrician
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cta flex-shrink-0">
+                                    <a href="#" class="btn btn-sm btn-outline-primary"
+                                    >Schedule</a
+                                    >
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

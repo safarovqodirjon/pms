@@ -9,12 +9,8 @@ urlpatterns = [
     # Маршрут для регистрации и входа
     path('', views.register, name='register'),
     path('register/', views.register, name='register'),
+    path('register/wait/', views.RegistrationWaitView.as_view(), name='register-wait'),
     path('login/', views.login_view, name='login'),
-
-    # Маршрут для основной страници
-    path('main-admin/', views.main_admin, name='main-admin'),
-    path('main-employee/', views.main_employee, name='main-employee'),
-    path('main-manager/', views.main_manager, name='main-manager'),
 
     # маршрут для администратора по приему заявок
     path('main-admin/show-reguest/', user_passes_test(lambda u: u.is_superuser)(views.request_list),
@@ -25,6 +21,4 @@ urlpatterns = [
     path('showreguest/<int:request_id>/', user_passes_test(lambda u: u.is_superuser)(views.decline_request),
          name='request-decline'),
 
-    path('register/wait/', views.RegistrationWaitView.as_view(), name='register-wait'),
-    path('main/employee/', views.MainEmployeeView.as_view(), name='main-employee'),
 ]
