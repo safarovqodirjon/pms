@@ -26,7 +26,6 @@ def admin_main(request):
 def admin_projects(request):
     context = {
         'admin_projects': True,
-
     }
     return render(request, 'management/admin/admin-projects.html', context=context)
 
