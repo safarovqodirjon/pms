@@ -7,9 +7,7 @@ class CustomUser(AbstractUser):
     is_manager = models.BooleanField(default=False)
     departament = models.CharField(default="Unknown", max_length=255)
     request_date = models.DateTimeField(auto_now_add=True)
-    managed_tasks = models.ManyToManyField('management.Project', related_name='assigned_managers', blank=True)
 
-    # tasks = models.ManyToManyField('management.Task', related_name='employees', blank=True)
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
