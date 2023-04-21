@@ -32,21 +32,76 @@
                         <div class="login-title">
                             <h2 class="text-center text-primary">Регистрация</h2>
                         </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('input[name="is_employee"]').on('change', function () {
+                                    $('input[name="is_manager"]').prop('checked', false);
+                                });
+
+                                $('input[name="is_manager"]').on('change', function () {
+                                    $('input[name="is_employee"]').prop('checked', false);
+                                });
+
+                                $('form').on('submit', function (event) {
+                                    event.preventDefault();
+                                    var form = $(this);
+                                    var formData = new FormData(form[0]);
+                                    $.ajax({
+                                        url: form.attr('action'),
+                                        method: form.attr('method'),
+                                        data: formData,
+                                        processData: false,
+                                        contentType: false,
+                                        success: function (response) {
+                                            // Handle success response here
+                                        },
+                                        error: function (xhr, errmsg, err) {
+                                            // Handle error response here
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        <script>
+                            $(document).ready(function () {
+                                $('input[name="is_employee"]').on('change', function () {
+                                    $('input[name="is_manager"]').prop('checked', false);
+                                });
+
+                                $('input[name="is_manager"]').on('change', function () {
+                                    $('input[name="is_employee"]').prop('checked', false);
+                                });
+
+                                $('form').on('submit', function (event) {
+                                    var employee_checked = $('input[name="is_employee"]').is(':checked');
+                                    var manager_checked = $('input[name="is_manager"]').is(':checked');
+
+                                    if (!employee_checked && !manager_checked) {
+                                        event.preventDefault();
+                                        if (confirm('Вы не выбрали роль. Продолжить?')) {
+                                            // если пользователь нажал "ОК" - отправляем форму
+                                            $(this).off('submit').submit();
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+
+
                         <form method="post">
                             {% csrf_token %}
                             <div class="select-role">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-
                                     <label class="btn">
-                                        <input type="radio" name="is_employee" id="employee">
+                                        {{ form.is_employee }}
                                         <div class="icon">
                                             <img src="{% static 'vendors/images/person.svg' %}" class="svg" alt=""/>
                                         </div>
                                         <span>Я</span> Сотрудник
                                     </label>
-
-                                    <label class="btn active">
-                                        <input type="radio" name="is_manager" id="manager" checked>
+                                    <label class="btn">
+                                        {{ form.is_manager }}
                                         <div class="icon">
                                             <img src="{% static 'vendors/images/briefcase.svg' %}" class="svg" alt=""/>
                                         </div>

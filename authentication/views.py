@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
-from .forms import CustomAuthenticationForm, UserRegisterForm
+from .forms import CustomAuthenticationForm, UserRegisterForm, ProfileForm
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegistrationRequest, CustomUser
@@ -57,6 +57,25 @@ def login_view(request):
         'form': form,
     }
     return render(request, 'authenticate/login.html', context)
+
+
+@login_required
+def profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.image = request.FILES.get('image')  # сохраняем загруженное изображение в модели пользователя
+            user.save()
+            return redirect('authenticate:admin-profile')
+    else:
+        form = ProfileForm(instance=user)
+    context = {
+        'form': form,
+        'admin_profile': True,
+    }
+    return render(request, 'management/admin/admin-profile.html', context)
 
 
 @login_required(login_url='authenticate:login')

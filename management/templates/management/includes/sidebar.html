@@ -40,6 +40,14 @@
                 </li>
 
                 <li>
+                    <a href="{% url 'authenticate:admin-profile' %}"
+                       class="dropdown-toggle no-arrow {% if admin_profile %}active{% endif %}">
+                        <span class="micon bi bi-person-bounding-box"></span>
+                        <span class="mtext">Профиль</span>
+                    </a>
+                </li>
+
+                <li>
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>

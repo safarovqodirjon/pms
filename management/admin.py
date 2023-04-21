@@ -6,16 +6,6 @@ from django.contrib.auth import get_user_model
 from django.utils.safestring import mark_safe
 
 
-class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    fieldsets = UserAdmin.fieldsets + (
-        ('Custom Fields', {'fields': ('is_employee', 'is_manager')}),
-    )
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_employee', 'is_manager')
-    list_filter = ('is_employee', 'is_manager', 'is_active')
-    search_fields = ('username', 'email', 'first_name', 'last_name')
-
-
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'created_by', 'to_managers', 'start_date', 'end_date')
@@ -55,10 +45,14 @@ class TaskAdmin(admin.ModelAdmin):
             kwargs['empty_label'] = queryset.first().username
         if db_field.name == 'project':
             kwargs['queryset'] = Project.objects.all().order_by('name')
+        if db_field.name == 'assigned_to':
+            user = get_user_model()
+            queryset = user.objects.filter(is_employee=True)
+            kwargs['queryset'] = queryset
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def to_assigned(self, obj):
-        assigned = [f"{e.first_name} {e.last_name}" for e in obj.assigned_to.all()]
+        assigned = [f"{e.first_name} {e.last_name} ({e.email})" for e in obj.assigned_to.all()]
         return ', '.join(assigned)
 
     to_assigned.short_description = 'assigned_to'
@@ -132,4 +126,3 @@ class RegistrationRequestAdmin(admin.ModelAdmin):
         obj.save()
 
 
-admin.site.register(CustomUser, CustomUserAdmin)

@@ -7,6 +7,7 @@ class CustomUser(AbstractUser):
     is_manager = models.BooleanField(default=False)
     departament = models.CharField(default="Unknown", max_length=255)
     request_date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="users/%Y/%m/%d", blank=True, null=True)
 
     class Meta:
         verbose_name = 'Пользователь'

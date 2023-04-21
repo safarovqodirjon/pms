@@ -21,4 +21,6 @@ urlpatterns = [
     path('showreguest/<int:request_id>/', user_passes_test(lambda u: u.is_superuser)(views.decline_request),
          name='request-decline'),
 
+    path('main-admin/profile/', views.profile, name='admin-profile'),
+
 ]
