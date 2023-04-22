@@ -114,10 +114,10 @@
                         href="#"
                         role="button"
                         data-toggle="dropdown">
-							<span class="user-icon">
-								<img src="{% static 'vendors/images/photo7.jpg' %}" alt=""/>
+							<span class="user-icon" style="">
+								<img style= "" src="{% if user.image %}{{ user.image.url }}{% endif %}" alt=""/>
 							</span>
-                    <span class="user-name">Ross C. Lopez</span>
+                    <span class="user-name">{{ user.username }}</span>
                 </a>
                 <div
                         class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"

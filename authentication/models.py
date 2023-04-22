@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from PIL import Image
 
 
 class CustomUser(AbstractUser):
@@ -7,6 +8,8 @@ class CustomUser(AbstractUser):
     is_manager = models.BooleanField(default=False)
     departament = models.CharField(default="Unknown", max_length=255)
     request_date = models.DateTimeField(auto_now_add=True)
+    phone = models.CharField(max_length=255, default='Unknown', help_text='+992---')
+    address = models.CharField(max_length=255, default='Unknown', help_text='address')
     image = models.ImageField(upload_to="users/%Y/%m/%d", blank=True, null=True)
 
     class Meta:

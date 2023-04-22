@@ -1499,18 +1499,26 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before
 }
 
 .user-info-dropdown .dropdown-toggle .user-icon {
-    width: 52px;
-    height: 52px;
-    font-size: 24px;
-    background: #ebeff3;
-    color: #1b00ff;
-    line-height: 52px;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
-    border-radius: 100%;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .18)
+  width: 52px;
+  height: 52px;
+  font-size: 24px;
+  background: #ebeff3;
+  color: #1b00ff;
+  line-height: 52px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 100%;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .18);
+  overflow: hidden; /* скрываем лишнее, если картинка выходит за границы */
+}
+
+.user-info-dropdown .dropdown-toggle .user-icon img {
+  display: block; /* необходимо, чтобы margin и padding не смещали картинку */
+  margin: 0 auto; /* центрируем картинку */
+  max-width: 100%; /* делаем так, чтобы картинка не выходила за границы блока */
+  height: auto; /* автоматически вычисляем высоту картинки */
 }
 
 .user-info-dropdown .dropdown-toggle .user-name {

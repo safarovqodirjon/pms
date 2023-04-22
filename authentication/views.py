@@ -75,6 +75,7 @@ def profile(request):
         'form': form,
         'admin_profile': True,
     }
+    # return render(request, 'management/admin/profile.html', context)
     return render(request, 'management/admin/admin-profile.html', context)
 
 
