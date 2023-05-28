@@ -2,14 +2,35 @@
 <script src="{% static 'vendors/echarts.min.js' %}"></script>
 <div class="row pb-10">
 
-
-<div class="col-md-12 mb-20">
+    <div class="col-md-12 mb-20">
         <div class="card-box height-100-p pd-20">
-
-            <script>
-                {{ bar_emp_man|safe }}
-
-            </script>
-
+            <div id="chart" style="height:400px;"></div>
         </div>
     </div>
+    {#    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>#}
+    <script>
+        var chartDom = document.getElementById('chart');
+        var myChart = echarts.init(chartDom);
+        var option;
+
+        option = {
+            title: {
+                text: 'Продвежения сотрудников'
+            },
+            tooltip: {},
+            xAxis: {
+                type: 'category',
+                data: ['A', 'B', 'C', 'D', 'E', 'F']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [10, 20, 30, 40, 50, 60],
+                type: 'bar'
+            }]
+        };
+
+        option && myChart.setOption(option);
+    </script>
+</div>

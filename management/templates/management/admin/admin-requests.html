@@ -1,5 +1,5 @@
 {% extends 'management/base/base.html' %}
-{#{% load i18n %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 
@@ -14,7 +14,7 @@
     <div class="main-container">
         <div class="xs-pd-20-10 pd-ltr-20">
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Управления запросамы</h2>
+                <h2 class="h3 mb-0">Управления запросами</h2>
             </div>
             <div class="row pb-10">
 
@@ -31,7 +31,10 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-suitcase"></i>
+                                    <a class="text-warning" href="{% url 'management:admin-submit-project' %}">
+                                        <i class="icon-copy dw dw-suitcase"></i>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +52,10 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-email"></i></div>
+                                    <a class="text-warning" href="{% url 'management:admin-submit-task' %}">
+                                        <i class="icon-copy dw dw-email"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -66,7 +72,11 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-key"></i>
+                                    <a class="text-warning"
+                                       href="{% url 'admin:authentication_registrationrequest_changelist' %}">
+                                        <i class="icon-copy dw dw-key"></i>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -84,7 +94,50 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-edit-1"></i>
+                                    <a href="" class="text-warning"> <i class="icon-copy dw dw-edit-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    {% if employee_count %}{{ employees_count }}{% else %}{% endif %}</div>
+                                <div class="font-14 text-secondary weight-500">
+
+                                    <a href="{% url 'admin:management_project_changelist' %}">Проекты</a>
+
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#00eccf">
+                                    <a class="text-warning" href="{% url 'admin:management_project_changelist' %}"><i
+                                            class="icon-copy dw dw-folder-5"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">
+                                    {% if managers_count %}{{ managers_count }}{% else %}{% endif %}</div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <a href="{% url 'admin:management_task_changelist' %}"> Задачи </a>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#00eccf">
+                                    <a class="text-warning" href="{% url 'admin:management_task_changelist' %}">
+                                       <i class="icon-copy dw dw-add-file-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -94,29 +147,10 @@
 
             </div>
 
-            <div class="title pb-20 pt-20">
-                <h2 class="h3 mb-0">Bla-bla</h2>
-            </div>
+            {#            <div class="title pb-20 pt-20">#}
+            {#                <h2 class="h3 mb-0">Доска запросов для завершения проектов</h2>#}
+            {#            </div>#}
 
-            {% if blabla %}
-                <div class="row">
-                    {% for el in '123' %}
-                        <div class="col-md-4 mb-20">
-                            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                                <div class="img pb-30">
-                                    <img src="{% static 'vendors/images/medicine-bro.svg' %}" alt=""/>
-                                </div>
-                                <div class="content">
-                                    <h3 class="h4">Services</h3>
-                                    <p class="max-width-200">
-                                        We provide superior health care in a compassionate maner
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
             {% include 'management/admin/includes/admin-manage-forms.html' %}
 
             {#            {% include 'management/includes/graphics.html' %}#}
@@ -125,9 +159,9 @@
 
 
             <div class="footer-wrap pd-20 mb-20 card-box">
-                Soliev DIPLOMA
-                <a href="" target="_blank"
-                >Safarov</a>
+                Квалификационная работа
+                Система управления задачами
+                - сайт, созданный под руководством Устода Солиева Одилхуджы и Худойбердиева Хуршеда.
             </div>
         </div>
     </div>

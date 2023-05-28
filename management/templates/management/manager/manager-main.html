@@ -8,14 +8,13 @@
     {% include 'management/manager/includes/manager-sidebar.html' %}
 
     <div class="mobile-menu-overlay"></div>
-
     <div class="main-container">
         <div class="xs-pd-20-10 pd-ltr-20">
             <div class="title pb-20">
                 <h2 class="h3 mb-0">Дашбоард {{ role }}а</h2>
             </div>
-            <div class="row pb-10">
 
+            <div class="row pb-10">
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
@@ -27,7 +26,10 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-folder-65"></i>
+                                    <a class="text-warning" href="{% url 'management:manager-main' %}">
+                                        <i class="icon-copy dw dw-folder-65"></i>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +50,10 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <span class="icon-copy dw dw-list3"></span>
+                                    <a class="text-warning" href="{% url 'management:manager-task-list' %}">
+                                        <span class="icon-copy dw dw-list3"></span>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -68,7 +73,9 @@
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <span class="icon-copy ti-user"></span>
+                                    <a class="text-warning" href="{% url 'management:manager-employee' %}">
+                                        <span class="icon-copy ti-user"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -80,30 +87,32 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ admins_count }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ 0 }}</div>
                                 <div class="font-14 text-secondary weight-500">
                                     <a href="#">Запросы</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <span class="icon-copy ti-crown"></span>
+                                    <a class="text-warning" href="#">
+                                        <span class="icon-copy ti-crown"></span>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             {% include 'management/manager/includes/manager-table.html' %}
 
-
             <div class="footer-wrap pd-20 mb-20 card-box">
                 Квалификационная работа
-                <a href="" target="_blank">Система управления задачами</a>
-                - сайт, созданный под руководством Устода Солиева и Худойбердиева.
+                Система управления задачами
+                - сайт, созданный под руководством Устода Солиева Одилхуджы и Худойбердиева Хуршеда.
             </div>
+
         </div>
     </div>
 

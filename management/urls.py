@@ -12,7 +12,7 @@ urlpatterns = [
     path('admin-managers/', views.admin_managers, name='admin-managers'),
     path('admin-employee/', views.admin_employee, name='admin-employee'),
 
-    path('admin-manage/', views.admin_manage, name='admin-manage'),
+    path('admin-manage/', views.admin_submit_completion_request, name='admin-manage'),
     path('admin-requests/', views.admin_requests, name='admin-requests'),
     path('admin-subpro/', views.admin_submit_completion_request, name='admin-submit-project'),
     path('admin-subtask/', views.admin_submit_task_completion_request, name='admin-submit-task'),
@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('manager-main/', views.manager_main, name='manager-main'),
     path('manager-emploee/', views.manager_employee, name='manager-employee'),
-    path('manager-manage/', views.manager_manage, name='manager-manage'),
+    path('manager-manage/', views.manager_create_task, name='manager-manage'),
 
     path('manager-manage-tasks/', views.manager_task_list, name='manager-task-list'),
     path('manager-manage-create-tasks/', views.manager_create_task, name='manager-task-create'),

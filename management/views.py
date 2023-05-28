@@ -80,9 +80,8 @@ def admin_manage(request):
 @superuser_required
 def admin_requests(request):
     context = {
-        'admin_requests': True,
+        'admin_manage': True,
         'role': 'менеджер',
-        'blabla': True,
 
     }
     return render(request, 'management/admin/admin-requests.html', context=context)
@@ -105,7 +104,7 @@ def admin_submit_completion_request(request):
         form = ProjectCompletionRequestForm()
 
     context = {
-        'admin_requests': True,
+        'admin_manage': True,
         'role': 'менеджер',
         'sub_pro_card': True,
         'form': form,
@@ -131,7 +130,7 @@ def admin_submit_task_completion_request(request):
         form = TaskCompletionRequestForm()
 
     context = {
-        'admin_requests': True,
+        'admin_manage': True,
         'role': 'менеджер',
         'sub_task_card': True,
         'form': form,
@@ -186,29 +185,6 @@ def manager_main(request):
 
 @login_required
 @manager_required
-def manager_manage(request):
-    dryness_list = ManagerCalculation.count_dryness(request=request)
-    projects = AdminCalculator.project_list()
-    employees_table = AdminCalculator.user_list()
-
-    context = {
-        'manager_secondary': True,
-
-        'employees_count': dryness_list['employees_count'],
-        'managers_count': dryness_list['managers_count'],
-        'project_count': dryness_list['project_count'],
-        'tasks_count': dryness_list['tasks_count'],
-
-        'projects_table': projects['projects'],
-        'managers_table': employees_table['custom_users_managers'],
-
-        'project_card': True,
-    }
-    return render(request, 'management/manager/manager-secondary.html', context=context)
-
-
-@login_required
-@manager_required
 def manager_employee(request):
     dryness_list = ManagerCalculation.count_dryness(request=request)
     assigned_employee = ManagerCalculation.manager_projects(request=request)
@@ -226,30 +202,33 @@ def manager_employee(request):
     return render(request, 'management/manager/manager-main.html', context=context)
 
 
-@login_required
-@manager_required
-def manager_task_list(request):
-    tasks = ManagerCalculation.manager_projects(request=request)
-    dryness_list = ManagerCalculation.count_dryness(request=request)
-    assigned_employee = ManagerCalculation.manager_projects(request=request)
-
-    context = {
-        'manager_main': True,
-        'project_count': dryness_list['project_count'],
-        'employees_count': dryness_list['employees_count'],
-        'tasks_count': dryness_list['tasks_count'],
-        'task_card': True,
-        'task_list': tasks['task_assigned'],
-    }
-    return render(request, 'management/manager/manager-main.html', context=context)
+# @login_required
+# @manager_required
+# def manager_manage(request):
+#     dryness_list = ManagerCalculation.count_dryness(request=request)
+#     projects = AdminCalculator.project_list()
+#     employees_table = AdminCalculator.user_list()
+#
+#     context = {
+#         'manager_secondary': True,
+#
+#         'employees_count': dryness_list['employees_count'],
+#         'managers_count': dryness_list['managers_count'],
+#         'project_count': dryness_list['project_count'],
+#         'tasks_count': dryness_list['tasks_count'],
+#
+#         'projects_table': projects['projects'],
+#         'managers_table': employees_table['custom_users_managers'],
+#
+#         'project_card': True,
+#     }
+#     return render(request, 'management/manager/manager-secondary.html', context=context)
 
 
 @login_required
 @manager_required
 def manager_create_task(request):
-    tasks = ManagerCalculation.manager_projects(request=request)
     dryness_list = ManagerCalculation.count_dryness(request=request)
-    assigned_employee = ManagerCalculation.manager_projects(request=request)
 
     if request.method == 'POST':
         form = TaskForm(request.POST, user=request.user)  # Передаем текущего пользователя в форму
@@ -271,6 +250,24 @@ def manager_create_task(request):
         'form': form,
     }
     return render(request, 'management/manager/manager-secondary.html', context=context)
+
+
+@login_required
+@manager_required
+def manager_task_list(request):
+    tasks = ManagerCalculation.manager_projects(request=request)
+    dryness_list = ManagerCalculation.count_dryness(request=request)
+    assigned_employee = ManagerCalculation.manager_projects(request=request)
+
+    context = {
+        'manager_main': True,
+        'project_count': dryness_list['project_count'],
+        'employees_count': dryness_list['employees_count'],
+        'tasks_count': dryness_list['tasks_count'],
+        'task_card': True,
+        'task_list': tasks['task_assigned'],
+    }
+    return render(request, 'management/manager/manager-main.html', context=context)
 
 
 @login_required

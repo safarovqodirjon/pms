@@ -1,24 +1,8 @@
-{% if task_card %}
-
-    <h1>Список задач</h1>
-    <ul>
-        {% for task in task_list %}
-            <li>{{ task.name }}</li>
-            <li>{{ task.status }}</li>
-            <li>{{ task.project }}</li>
-            <li>{{ task.assigned_to }}</li>
-            <p>-----------</p>
-        {% empty %}
-            <li>Нет задач.</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
 {% if task_create_card %}
     <div class="pd-20 card-box mb-30">
         <div class="clearfix">
             <div class="pull-left">
-                <h4 class="text-dark h4">Добавить задачи</h4>
+                <h4 class="text-dark h4">Добавить задачу</h4>
                 {#                <p class="mb-30">All bootstrap element classies</p>#}
             </div>
         </div>

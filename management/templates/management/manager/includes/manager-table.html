@@ -1,7 +1,41 @@
 {% load static %}
+{% if project_card %}
+
+    {% for project in projects_table %}
+        <div class="card-box pd-20 height-100-p mb-30">
+            <div class="row align-items-center">
+                <div class="col-md-4 ">
+                    <img src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
+                        {{ project.rate }}
+                        <div class="weight-600 font-30 text-blue"> {{ project.name }}
+                            <span class="text-danger font-20">
+                                ({{ project.get_project_status_display }})
+                            </span>
+                        </div>
+                    </h4>
+                    <p class="font-18 max-width-600" style="text-align: justify">
+                        {{ project.description }}
+                    </p>
+
+                    <div class="weight-600 font-20 text-blue">
+                        <span class="text-dark">Срок от </span>{{ project.start_date|default:"Нет данных" }}
+                        <span class="text-dark">до</span> <span class="text-danger">{{ project.end_date }}</span>
+                    </div>
+
+                    <div class="weight-600 font-30 text-danger">
+                        <span class="text-dark font-20">Рейтинг:</span> {{ project.rating }}
+                    </div>
 
 
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
+{% endif %}
 {% if task_card %}
     <div class="title pb-20 pt-20">
         <h2 class="h3 mb-0">Ваши задачи</h2>
@@ -61,47 +95,6 @@
         </div>
     {% endfor %}
 {% endif %}
-
-{% if project_card %}
-
-    {% for project in projects_table %}
-        <div class="card-box pd-20 height-100-p mb-30">
-            <div class="row align-items-center">
-                <div class="col-md-4 ">
-                    <img src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="">
-                </div>
-                <div class="col-md-8">
-                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                        {{ project.rate }}
-                        <div class="weight-600 font-30 text-blue"> {{ project.name }}
-                            <span class="text-danger font-20">
-                                ({{ project.get_project_status_display }})
-                            </span>
-                        </div>
-                    </h4>
-                    <p class="font-18 max-width-600" style="text-align: justify">
-                        {{ project.description }}
-                    </p>
-
-                    <div class="weight-600 font-20 text-blue">
-                        <span class="text-dark">Срок от </span>{{ project.start_date|default:"Нет данных" }}
-                        <span class="text-dark">до</span> <span class="text-danger">{{ project.end_date }}</span>
-                    </div>
-
-                    <div class="weight-600 font-30 text-danger">
-                        <span class="text-dark font-20">Рейтинг:</span> {{ project.rating }}
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-{% endif %}
-
-
-
 {% if employee_card %}
     <div class="row">
         <div class="col-lg-12 col-md-6 mb-20">
