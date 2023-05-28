@@ -17,7 +17,7 @@ def admin_main(request):
     dryness_list = AdminCalculator.count_dryness()
     projects = AdminCalculator.project_list()
     employees_table = AdminCalculator.user_list()
-    bar_emp_man = AdminCalculator.bar_plot_users(model=CustomUser)
+    # bar_emp_man = AdminCalculator.bar_plot_users(model=CustomUser)
 
     context = {
         'admin_main': True,
@@ -25,7 +25,7 @@ def admin_main(request):
         'managers_count': dryness_list['managers_count'],
         'admins_count': dryness_list['admins_count'],
         'project_count': dryness_list['project_count'],
-        'bar_emp_man': bar_emp_man['bar_emp_man'],
+        # 'bar_emp_man': bar_emp_man['bar_emp_man'],
         'projects_table': projects['projects'],
         'managers_table': employees_table['custom_users_managers'],
 
