@@ -1,7 +1,7 @@
 from authentication.models import CustomUser, RegistrationRequest
 from management.models import Project
 # import plotly.express as px
-import pandas as pd
+# import pandas as pd
 # import plotly.graph_objects as go
 #
 # import plotly.io as pio
