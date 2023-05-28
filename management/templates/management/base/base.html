@@ -6,6 +6,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
     <title>{% block title %}{% endblock %}</title>
 
     {% block styles %}
@@ -39,7 +41,7 @@
 
     <!-- Google Font -->
     <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            href="lalala://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
     />
     <!-- CSS -->
@@ -62,9 +64,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/style.css' %}"/>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
     <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+            src="lalala://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
     ></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -86,7 +90,7 @@
                 j = d.createElement(s),
                 dl = l != "dataLayer" ? "&l=" + l : "";
             j.async = true;
-            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+            j.src = "lalala://www.googletagmanager.com/gtm.js?id=" + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
@@ -100,6 +104,9 @@
 
 
 </body>
+<script src="{% static 'vendors/echarts.min.js' %}"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 {% block scripts %}
 
 {% endblock %}

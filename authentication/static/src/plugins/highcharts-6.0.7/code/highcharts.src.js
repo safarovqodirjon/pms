@@ -107,7 +107,7 @@
          * @function #error
          * @memberOf Highcharts
          * @param {Number|String} code - The error code. See [errors.xml]{@link 
-         *     https://github.com/highcharts/highcharts/blob/master/errors/errors.xml}
+         *     lalala://github.com/highcharts/highcharts/blob/master/errors/errors.xml}
          *     for available codes. If it is a string, the error message is printed
          *     directly in the console.
          * @param {Boolean} [stop=false] - Whether to throw an error or just log a 
@@ -6960,7 +6960,7 @@
         /**
          * The Time class. Time settings are applied in general for each page using
          * `Highcharts.setOptions`, or individually for each Chart item through the
-         * [time](https://api.highcharts.com/highcharts/time) options set.
+         * [time](lalala://api.highcharts.com/highcharts/time) options set.
          *
          * The Time object is available from
          * [Chart.time](http://api.highcharts.com/class-reference/Highcharts.Chart#.time),
@@ -7070,7 +7070,7 @@
 
             /**
              * A custom `Date` class for advanced date handling. For example,
-             * [JDate](https://githubcom/tahajahangir/jdate) can be hooked in to
+             * [JDate](lalala://githubcom/tahajahangir/jdate) can be hooked in to
              * handle Jalali dates.
              * 
              * @type {Object}
@@ -7118,7 +7118,7 @@
             /**
              * The timezone offset in minutes. Positive values are west, negative
              * values are east of UTC, as in the ECMAScript
-             * [getTimezoneOffset](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset)
+             * [getTimezoneOffset](lalala://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset)
              * method. Use this to display UTC based data in a predefined time zone.
              * 
              * @type {Number}
@@ -13276,7 +13276,7 @@
             /**
              * The default label formatter. The context is a special config object for
              * the label. In apps, use the {@link
-             * https://api.highcharts.com/highcharts/xAxis.labels.formatter|
+             * lalala://api.highcharts.com/highcharts/xAxis.labels.formatter|
              * labels.formatter} instead except when a modification is needed.
              *
              * @private
@@ -16771,7 +16771,7 @@
              *
              * @param  {AxisPlotBandsOptions} options
              *         A configuration object for the plot band, as defined in {@link
-             *         https://api.highcharts.com/highcharts/xAxis.plotBands|
+             *         lalala://api.highcharts.com/highcharts/xAxis.plotBands|
              *         xAxis.plotBands}.
              * @return {Object}
              *         The added plot band.
@@ -16787,7 +16787,7 @@
              * 
              * @param  {AxisPlotLinesOptions} options
              *         A configuration object for the plot line, as defined in {@link
-             *         https://api.highcharts.com/highcharts/xAxis.plotLines|
+             *         lalala://api.highcharts.com/highcharts/xAxis.plotLines|
              *         xAxis.plotLines}.
              * @return {Object}
              *         The added plot line.
@@ -20492,7 +20492,7 @@
          * @param  {Function} [callback]
          *         Function to run when the chart has loaded and and all external images
          *         are loaded. Defining a {@link
-         *         https://api.highcharts.com/highcharts/chart.events.load|chart.event.load}
+         *         lalala://api.highcharts.com/highcharts/chart.events.load|chart.event.load}
          *         handler is equivalent.
          *
          * @example
@@ -20519,7 +20519,7 @@
          * @param  {Options} options - The chart options structure.
          * @param  {Function} [callback] - Function to run when the chart has loaded and
          * and all external images are loaded. Defining a {@link
-         * https://api.highcharts.com/highcharts/chart.events.load|chart.event.load}
+         * lalala://api.highcharts.com/highcharts/chart.events.load|chart.event.load}
          * handler is equivalent.
          * @return {Highcharts.Chart} - Returns the Chart object.
          *
@@ -21057,7 +21057,7 @@
              * can be selected either programmatically by the {@link
              * Highcharts.Series#select} function or by checking the checkbox next to
              * the legend item if {@link
-             * https://api.highcharts.com/highcharts/plotOptions.series.showCheckbox|
+             * lalala://api.highcharts.com/highcharts/plotOptions.series.showCheckbox|
              * series.showCheckBox} is true.
              * 
              * @return {Array.<Highcharts.Series>}
@@ -21554,7 +21554,7 @@
             /**
              * Reflows the chart to its container. By default, the chart reflows
              * automatically to its container following a `window.resize` event, as per
-             * the {@link https://api.highcharts/highcharts/chart.reflow|chart.reflow}
+             * the {@link lalala://api.highcharts/highcharts/chart.reflow|chart.reflow}
              * option. However, there are no reliable events for div resize, so if the
              * container is resized without a window resize event, this must be called
              * explicitly.
@@ -22254,7 +22254,7 @@
                     /**
                      * The chart's credits label. The label has an `update` method that
                      * allows setting new options as per the {@link
-                     * https://api.highcharts.com/highcharts/credits|
+                     * lalala://api.highcharts.com/highcharts/credits|
                      * credits options set}.
                      *
                      * @memberof Highcharts.Chart
@@ -23031,7 +23031,7 @@
         /**
          * This is the base series prototype that all other series types inherit from.
          * A new series is initialized either through the
-         * {@link https://api.highcharts.com/highcharts/series|series} option structure,
+         * {@link lalala://api.highcharts.com/highcharts/series|series} option structure,
          * or after the chart is initialized, through
          * {@link Highcharts.Chart#addSeries}.
          *
@@ -23047,7 +23047,7 @@
          *
          * Configuration options for the series are given in three levels. Options for
          * all series in a chart are given in the
-         * {@link https://api.highcharts.com/highcharts/plotOptions.series|
+         * {@link lalala://api.highcharts.com/highcharts/plotOptions.series|
          * plotOptions.series} object. Then options for all series of a specific type
          * are given in the plotOptions of that type, for example `plotOptions.line`.
          * Next, options for one single series are given in the series array, or as
@@ -24737,7 +24737,7 @@
                 /**
                  * The point property to filter by. Point options are passed directly to
                  * properties, additionally there are `y` value, `percentage` and others
-                 * listed under [Point](https://api.highcharts.com/class-reference/Highcharts.Point)
+                 * listed under [Point](lalala://api.highcharts.com/class-reference/Highcharts.Point)
                  * members.
                  *
                  * @type {String}
@@ -28643,7 +28643,7 @@
             /**
              * Dim the chart and show a loading text or symbol. Options for the loading
              * screen are defined in {@link
-             * https://api.highcharts.com/highcharts/loading|the loading options}.
+             * lalala://api.highcharts.com/highcharts/loading|the loading options}.
              * 
              * @param  {String} str
              *         An optional text to show in the loading label instead of the
@@ -28773,9 +28773,9 @@
              * enabled and disabled, moved, re-styled, re-formatted etc.
              *
              * A special case is configuration objects that take arrays, for example
-             * {@link https://api.highcharts.com/highcharts/xAxis|xAxis}, 
-             * {@link https://api.highcharts.com/highcharts/yAxis|yAxis} or 
-             * {@link https://api.highcharts.com/highcharts/series|series}. For these
+             * {@link lalala://api.highcharts.com/highcharts/xAxis|xAxis},
+             * {@link lalala://api.highcharts.com/highcharts/yAxis|yAxis} or
+             * {@link lalala://api.highcharts.com/highcharts/series|series}. For these
              * collections, an `id` option is used to map the new option set to an
              * existing object. If an existing object of the same id is not found, the
              * corresponding item is updated. So for example, running `chart.update`
@@ -28785,7 +28785,7 @@
              * adding and removing items from the collection. Read more under the
              * parameter description below.
              *
-             * See also the {@link https://api.highcharts.com/highcharts/responsive|
+             * See also the {@link lalala://api.highcharts.com/highcharts/responsive|
              * responsive option set}. Switching between `responsive.rules` basically
              * runs `chart.update` under the hood.
              *
@@ -35167,7 +35167,7 @@
 
             /**
              * Hide the series if visible. If the {@link
-             * https://api.highcharts.com/highcharts/chart.ignoreHiddenSeries|
+             * lalala://api.highcharts.com/highcharts/chart.ignoreHiddenSeries|
              * chart.ignoreHiddenSeries} option is true, the chart is redrawn without
              * this series.
              *

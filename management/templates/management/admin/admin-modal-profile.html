@@ -37,7 +37,7 @@
                                     <!-- Open Task start -->
                                     <div class="task-title row align-items-center">
                                         <div class="col-md-8 col-sm-12">
-                                            <h5>Open Tasks (4 Left)</h5>
+                                            <h5>{{ tasks.0.name }}</h5>
                                         </div>
                                         <div class="col-md-4 col-sm-12 text-right">
                                             <a
@@ -51,107 +51,40 @@
                                     </div>
                                     <div class="profile-task-list pb-30">
                                         <ul>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-1"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-1"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit. Id ea earum.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2019</span>
+                                            {% for task in tasks %}
+                                                <li>
+                                                    <div
+                                                            class="custom-control custom-checkbox mb-5">
+                                                        <input
+                                                                type="checkbox"
+                                                                class="custom-control-input"
+                                                                id="task-2"
+                                                        />
+                                                        <label
+                                                                class="custom-control-label"
+                                                                for="task-2"
+                                                        ></label>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-2"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-2"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2019</span>
+                                                    <div class="task-type">{{ task.project }}</div>
+                                                    {{ task.name }}
+                                                    <div class="task-assign">
+                                                        Задача для
+                                                        {% for user in task.assigned_to.all %}
+                                                           {{ user.first_name }} и
+                                                        {% endfor %}
+                                                        <div class="due-date">
+                                                            Срок <span>{{ task.due_date }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-3"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-3"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2019</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-4"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-4"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet. Id ea earum.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2019</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                     <!-- Open Task End -->
                                     <!-- Close Task start -->
                                     <div class="task-title row align-items-center">
                                         <div class="col-md-12 col-sm-12">
-                                            <h5>Closed Tasks</h5>
+                                            <h5>Завершеные задачи</h5>
                                         </div>
                                     </div>
                                     <div class="profile-task-list close-tasks">
@@ -172,95 +105,19 @@
                                                             for="task-close-1"
                                                     ></label>
                                                 </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit. Id ea earum.
+                                                <div class="task-type">версияи мобилӣ</div>
+                                                версияи мобилӣ
+
                                                 <div class="task-assign">
-                                                    Assigned to Ferdinand M.
+                                                    Чахонгир Олимчонов
                                                     <div class="due-date">
-                                                        due date <span>22 February 2018</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-close-2"
-                                                            checked=""
-                                                            disabled=""
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-close-2"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2018</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-close-3"
-                                                            checked=""
-                                                            disabled=""
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-close-3"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2018</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div
-                                                        class="custom-control custom-checkbox mb-5"
-                                                >
-                                                    <input
-                                                            type="checkbox"
-                                                            class="custom-control-input"
-                                                            id="task-close-4"
-                                                            checked=""
-                                                            disabled=""
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="task-close-4"
-                                                    ></label>
-                                                </div>
-                                                <div class="task-type">Email</div>
-                                                Lorem ipsum dolor sit amet. Id ea earum.
-                                                <div class="task-assign">
-                                                    Assigned to Ferdinand M.
-                                                    <div class="due-date">
-                                                        due date <span>22 February 2018</span>
+                                                        <span></span>
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- Close Task start -->
+
                                     <!-- add task popup start -->
                                     <div
                                             class="modal fade customscroll"

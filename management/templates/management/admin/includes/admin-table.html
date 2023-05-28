@@ -1,0 +1,267 @@
+{% load static %}
+
+{% if project_card %}
+    <div class="row">
+        <div class="col-lg-12 col-md-6 mb-20">
+            <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Список проектов</div>
+                <table class="data-table table nowrap">
+                    <thead>
+                    <tr>
+                        <th class="table-plus">Название</th>
+                        <th>Описание</th>
+                        <th>Дата начала</th>
+                        <th>Дата окончания</th>
+                        <th>Менеджер проекта</th>
+                        {#                    <th>Создан</th>#}
+                        <th>Телефон</th>
+                        <th>Почта</th>
+                        <th>Статус</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for project in projects_table %}
+                        <tr>
+                            <td class="table-plus">{{ project.name }}</td>
+
+                            <td>
+                                <a href="{% url 'admin:management_project_change' project.id %}">{{ project.description }}</a>
+                            </td>
+                            <td>{{ project.start_date|default:"Нет данных" }}</td>
+                            <td>{{ project.end_date|default:"Нет данных" }}</td>
+
+
+                            <td class="table-plus">
+                                {% if project.assigned_to.first.image %}
+                                    <div class="name-avatar d-flex align-items-center">
+                                        <div class="avatar mr-2 flex-shrink-0">
+                                            <a target="_blank" href="{{ project.assigned_to.first.image.url }}">
+                                                <img
+                                                        src="{{ project.assigned_to.first.image.url }}"
+                                                        class="border-radius-150"
+                                                        width="70"
+                                                        height="70"
+                                                        alt=""
+                                                />
+                                                {% for manager in project.assigned_to.all %}
+                                                    {{ manager.last_name }}
+                                                    {{ manager.first_name }}{% if not forloop.last %}, {% endif %}
+                                                {% endfor %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
+
+                            {#                        <td>{{ project.created_by.username }}</td>#}
+
+                            <td>{{ project.assigned_to.first.phone }}</td>
+                            <td>{{ project.assigned_to.first.email }}</td>
+                            <td>{{ project.get_project_status_display }}</td>
+
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">Нет добавленных проектов</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if manager_card %}
+    <div class="title pb-20 pt-20">
+        <h2 class="h3 mb-0">Лучшее менеджеры компании</h2>
+    </div>
+    <div class="row">
+        {% for manager in managers_table %}
+
+            <div class="col-md-4 mb-20">
+                <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                    <div class="img pb-30">
+                        {% if manager.image %}
+                            <img src="{{ manager.image.url }}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="content">
+                        <h3 class="h4">{{ manager.last_name }} {{ manager.first_name }}</h3>
+                        <p class=" h4 max-width-200">
+                            Рейтинг:
+                            <span class="badge badge-pill bg-warning text-white"
+                                  data-bgcolor="#">ㅤ{{ manager.rate }}ㅤ</span>
+                        </p>
+
+                        <p class=" max-width-200">
+                            Телефон: {{ manager.phone }}
+                        </p>
+
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-6 mb-20">
+            <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Список менеджеров</div>
+                <table class="data-table table nowrap">
+                    <thead>
+                    <tr>
+                        <th class="table-plus">Имя</th>
+                        <th>Фото</th>
+                        <th>Рейтинг</th>
+                        <th>Отдел</th>
+                        <th>Телефон</th>
+                        <th>Почта</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for manager in managers_table %}
+                        <tr>
+                            <td class="table-plus">
+                                {% if manager.image %}
+                                    <div class="name-avatar d-flex align-items-center">
+                                        <div class="avatar mr-2 flex-shrink-0">
+                                            <a target="_blank" href="{{ manager.image.url }}">
+                                                <img
+                                                        src="{{ manager.image.url }}"
+                                                        class="border-radius-150 rounded"
+                                                        width="70"
+                                                        height="70"
+                                                        alt=""
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a href="{% url 'admin:authentication_customuser_change' manager.id %}">{{ manager.get_full_name }}</a></a>
+                            </td>
+                            <td>{{ manager.rate }}</td>
+
+                            <td>{{ manager.departament }}</td>
+                            <td>{{ manager.phone }}</td>
+                            <td>{{ manager.email }}</td>
+
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">Нет добавленных сотрудников</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% if employee_card %}
+
+    <div class="title pb-20 pt-20">
+        <h2 class="h3 mb-0">Лучшее менеджеры компании</h2>
+    </div>
+    <div class="row">
+        {% for employee in employees_table %}
+
+            <div class="col-md-4 mb-20">
+                <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                    <div class="img pb-30">
+                        {% if employee.image %}
+                            <img src="{{ employee.image.url }}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="content">
+                        <h3 class="h4">{{ employee.last_name }} {{ employee.first_name }}</h3>
+                        <p class=" h4 max-width-200">
+                            Рейтинг:
+                            <span class="badge badge-pill bg-warning text-white"
+                                  data-bgcolor="#">ㅤ{{ employee.rate }}ㅤ</span>
+                        </p>
+
+                        <p class=" max-width-200">
+                            Телефон: {{ employee.phone }}
+                        </p>
+
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-6 mb-20">
+            <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Топ сотрудников</div>
+                <table class="data-table table nowrap">
+                    <thead>
+                    <tr>
+                        <th class="table-plus">Имя</th>
+                        <th>Фото</th>
+                        <th>Рейтинг</th>
+                        <th>Отдел</th>
+                        <th>Телефон</th>
+                        <th>Почта</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for employee in employees_table %}
+                        <tr>
+
+                            <td class="table-plus">
+                                {% if employee.image %}
+                                    <div class="name-avatar d-flex align-items-center">
+                                        <div class="avatar mr-2 flex-shrink-0">
+                                            <a target="_blank" href="{{ employee.image.url }}">
+                                                <img
+                                                        src="{{ employee.image.url }}"
+                                                        class="border-radius-150 rounded"
+                                                        width="70"
+                                                        height="70"
+                                                        alt=""
+                                                />
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a href="{% url 'admin:authentication_customuser_change' employee.id %}">{{ employee.get_full_name }}</a></a>
+                            </td>
+                            <p>
+
+                            </p>
+
+                            <td>{{ employee.rate }}</td>
+
+                            <td>{{ employee.departament }}</td>
+                            <td>{{ employee.phone }}</td>
+                            <td>{{ employee.email }}</td>
+
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">Нет добавленных сотрудников</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+

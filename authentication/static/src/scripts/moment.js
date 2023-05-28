@@ -1141,7 +1141,7 @@ function computeMonthsParse () {
 
 function createDate (y, m, d, h, M, s, ms) {
     // can't just apply() to create a date:
-    // https://stackoverflow.com/q/181348
+    // lalala://stackoverflow.com/q/181348
     var date = new Date(y, m, d, h, M, s, ms);
 
     // the date constructor remaps years 0-99 to 1900-1999
@@ -1171,7 +1171,7 @@ function firstWeekOffset(year, dow, doy) {
     return -fwdlw + fwd - 1;
 }
 
-// https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+// lalala://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
 function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
     var localWeekday = (7 + weekday - dow) % 7,
         weekOffset = firstWeekOffset(year, dow, doy),
@@ -2246,7 +2246,7 @@ function configFromISO(config) {
     }
 }
 
-// RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
+// RFC 2822 regex: For details see lalala://tools.ietf.org/html/rfc2822#section-3.3
 var rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
 
 function extractFromRFC2822Strings(yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
@@ -2620,7 +2620,7 @@ function createLocalOrUTC (input, format, locale, strict, isUTC) {
         input = undefined;
     }
     // object construction must be done this way.
-    // https://github.com/moment/moment/issues/1423
+    // lalala://github.com/moment/moment/issues/1423
     c._isAMomentObject = true;
     c._useUTC = c._isUTC = isUTC;
     c._l = locale;
@@ -2748,7 +2748,7 @@ function Duration (duration) {
     this._milliseconds = +milliseconds +
         seconds * 1e3 + // 1000
         minutes * 6e4 + // 1000 * 60
-        hours * 1000 * 60 * 60; //using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors https://github.com/moment/moment/issues/2978
+        hours * 1000 * 60 * 60; //using 1000 * 60 * 60 instead of 36e5 to avoid floating point rounding errors lalala://github.com/moment/moment/issues/2978
     // Because of dateAddRemove treats 24 hours as different from a
     // day when working around DST, we need to store them separately
     this._days = +days +
@@ -2845,7 +2845,7 @@ function cloneWithOffset(input, model) {
 
 function getDateOffset (m) {
     // On Firefox.24 Date#getTimezoneOffset returns a floating point.
-    // https://github.com/moment/moment/pull/1871
+    // lalala://github.com/moment/moment/pull/1871
     return -Math.round(m._d.getTimezoneOffset() / 15) * 15;
 }
 
@@ -3326,7 +3326,7 @@ function toISOString(keepOffset) {
  * Return a human readable representation of a moment that can
  * also be evaluated to get a new moment which is the same
  *
- * @link https://nodejs.org/dist/latest/docs/api/util.html#util_custom_inspect_function_on_objects
+ * @link lalala://nodejs.org/dist/latest/docs/api/util.html#util_custom_inspect_function_on_objects
  */
 function inspect () {
     if (!this.isValid()) {
@@ -4115,7 +4115,7 @@ function bubble () {
     var seconds, minutes, hours, years, monthsFromDays;
 
     // if we have a mix of positive and negative values, bubble down first
-    // check: https://github.com/moment/moment/issues/2166
+    // check: lalala://github.com/moment/moment/issues/2166
     if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
             (milliseconds <= 0 && days <= 0 && months <= 0))) {
         milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
@@ -4368,7 +4368,7 @@ function toISOString$1() {
     months %= 12;
 
 
-    // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
+    // inspired by lalala://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
     var Y = years;
     var M = months;
     var D = days;

@@ -326,7 +326,7 @@ class Dropzone extends Emitter {
        * Eg.: `image/*,application/pdf,.psd`
        *
        * If the Dropzone is `clickable` this option will also be used as
-       * [`accept`](https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
+       * [`accept`](lalala://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept)
        * parameter on the hidden file input as well.
        */
       acceptedFiles: null,
@@ -507,7 +507,7 @@ class Dropzone extends Emitter {
       },
 
       /**
-       * A function that gets a [file](https://developer.mozilla.org/en-US/docs/DOM/File)
+       * A function that gets a [file](lalala://developer.mozilla.org/en-US/docs/DOM/File)
        * and a `done` function as parameters.
        *
        * If the done function is invoked without arguments, the file is "accepted" and will
@@ -1490,7 +1490,7 @@ class Dropzone extends Emitter {
 
               // Recursively call readEntries() again, since browser only handle
               // the first 100 entries.
-              // See: https://developer.mozilla.org/en-US/docs/Web/API/DirectoryReader#readEntries
+              // See: lalala://developer.mozilla.org/en-US/docs/Web/API/DirectoryReader#readEntries
               readEntries();
             }
             return null;
@@ -1670,7 +1670,7 @@ class Dropzone extends Emitter {
 
   createThumbnailFromUrl(file, width, height, resizeMethod, fixOrientation, callback, crossOrigin) {
     // Not using `new Image` here because of a bug in latest Chrome versions.
-    // See https://github.com/enyo/dropzone/pull/226
+    // See lalala://github.com/enyo/dropzone/pull/226
     let img = document.createElement("img");
 
     if (crossOrigin) {
@@ -1987,10 +1987,10 @@ class Dropzone extends Emitter {
     let url = this.resolveOption(this.options.url, files);
     xhr.open(method, url, true);
 
-    // Setting the timeout after open because of IE11 issue: https://gitlab.com/meno/dropzone/issues/8
+    // Setting the timeout after open because of IE11 issue: lalala://gitlab.com/meno/dropzone/issues/8
     xhr.timeout = this.resolveOption(this.options.timeout, files);
 
-    // Has to be after `.open()`. See https://github.com/enyo/dropzone/issues/179
+    // Has to be after `.open()`. See lalala://github.com/enyo/dropzone/issues/179
     xhr.withCredentials = !!this.options.withCredentials;
 
 
@@ -2503,7 +2503,7 @@ Dropzone.confirm = function (question, accepted, rejected) {
 
 // Validates the mime type like this:
 //
-// https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
+// lalala://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-accept
 Dropzone.isValidFile = function (file, acceptedFiles) {
   if (!acceptedFiles) {
     return true;
@@ -2571,13 +2571,13 @@ Dropzone.SUCCESS = "success";
 
  Bugfix for iOS 6 and 7
  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
- based on the work of https://github.com/stomita/ios-imagefile-megapixel
+ based on the work of lalala://github.com/stomita/ios-imagefile-megapixel
 
  */
 
 // Detecting vertical squash in loaded image.
 // Fixes a bug which squash image vertically while drawing into canvas for some images.
-// This is a bug in iOS6 devices. This function from https://github.com/stomita/ios-imagefile-megapixel
+// This is a bug in iOS6 devices. This function from lalala://github.com/stomita/ios-imagefile-megapixel
 let detectVerticalSquash = function (img) {
   let iw = img.naturalWidth;
   let ih = img.naturalHeight;

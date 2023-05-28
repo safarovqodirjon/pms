@@ -1,17 +1,21 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
 from authentication.models import CustomUser
 
 
 class UserRegisterForm(UserCreationForm):
     is_employee = forms.BooleanField(label='Сотрудник', required=False)
     is_manager = forms.BooleanField(label='Менеджер', required=False)
+    phone = forms.CharField(label='Номер телефона')
 
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'username',
-                  'email', 'is_employee', 'is_manager', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'username', 'phone', 'is_employee', 'is_manager', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].required = False
+        self.fields['password2'].required = False
 
     def clean(self):
         cleaned_data = super().clean()

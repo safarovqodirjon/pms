@@ -54,7 +54,7 @@ Highcharts.chart('chart1', {
 
 // chart 2
 $.getJSON(
-	'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
+	'lalala://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
 	function (data) {
 
 		Highcharts.chart('chart2', {
@@ -124,8 +124,8 @@ Highcharts.chart('chart3', {
 		text: 'US and USSR nuclear stockpiles'
 	},
 	subtitle: {
-		text: 'Sources: <a href="https://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
-		'thebulletin.org</a> &amp; <a href="https://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
+		text: 'Sources: <a href="lalala://thebulletin.org/2006/july/global-nuclear-stockpiles-1945-2006">' +
+		'thebulletin.org</a> &amp; <a href="lalala://www.armscontrol.org/factsheets/Nuclearweaponswhohaswhat">' +
 		'armscontrol.org</a>'
 	},
 	xAxis: {

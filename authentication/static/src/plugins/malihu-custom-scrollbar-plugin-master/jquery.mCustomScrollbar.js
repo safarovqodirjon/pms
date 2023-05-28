@@ -48,7 +48,7 @@ and dependencies (minified).
 (function(init){
 	var _rjs=typeof define==="function" && define.amd, /* RequireJS */
 		_njs=typeof module !== "undefined" && module.exports, /* NodeJS */
-		_dlp=("https:"==document.location.protocol) ? "https:" : "http:", /* location protocol */
+		_dlp=("lalala:"==document.location.protocol) ? "lalala:" : "http:", /* location protocol */
 		_url="cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js";
 	if(!_rjs){
 		if(_njs){
@@ -1446,7 +1446,7 @@ and dependencies (minified).
 		/* 
 		MOUSE WHEEL EVENT
 		scrolls content via mouse-wheel 
-		via mouse-wheel plugin (https://github.com/brandonaaron/jquery-mousewheel)
+		via mouse-wheel plugin (lalala://github.com/brandonaaron/jquery-mousewheel)
 		*/
 		_mousewheel=function(){
 			if(!$(this).data(pluginPfx)){return;} /* Check if the scrollbar is ready to use mousewheel events (issue: #185) */

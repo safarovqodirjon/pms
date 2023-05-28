@@ -1510,15 +1510,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before
     vertical-align: middle;
     border-radius: 100%;
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .18);
-    overflow: hidden; /* скрываем лишнее, если картинка выходит за границы */
-}
-
-.user-info-dropdown .dropdown-toggle .user-icon img {
-    display: block; /* необходимо, чтобы margin и padding не смещали картинку */
-    margin: 0 auto; /* центрируем картинку */
-    max-width: 100%; /* делаем так, чтобы картинка не выходила за границы блока */
-    height: auto; /* автоматически вычисляем высоту картинки */
+    box-shadow: 0 0 10px rgba(0, 0, 0, .18)
 }
 
 .user-info-dropdown .dropdown-toggle .user-name {
@@ -3490,27 +3482,9 @@ body.IE .login-wrap .container, body.IE .register-page-wrap .container {
     box-shadow: 0 2px 4px rgba(0, 0, 0, .4)
 }
 
-.user-info-dropdown .dropdown-toggle .user-icon {
-    width: 52px;
-    height: 52px;
-    font-size: 24px;
-    background: #ebeff3;
-    color: #1b00ff;
-    line-height: 52px;
-    text-align: center;
-    display: inline-block;
-    vertical-align: middle;
-    border-radius: 100%;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .18);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .18);
-    overflow: hidden;
+.contact-directory-box .contact-avatar span img, .profile-photo .avatar-photo, .profile-photo .edit-avatar {
+    border-radius: 100%
 }
-
-.user-info-dropdown .dropdown-toggle .user-icon img {
-    width: 100%;
-    height: auto;
-}
-
 
 .profile-info, .profile-skills, .profile-social {
     border-top: 2px dashed #ecf0f4;

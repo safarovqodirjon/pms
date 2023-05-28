@@ -1,16 +1,17 @@
 from django.contrib import admin
-from .models import Project, Task
+
+from .models import Project, Task, Manager, ProjectCompletionRequest, TaskCompletionRequest
 from authentication.models import CustomUser, RegistrationRequest
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
-from django.utils.safestring import mark_safe
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'created_by', 'to_managers', 'start_date', 'end_date')
+    list_display = ('id', 'name', 'created_by', 'to_managers', 'start_date', 'end_date', 'approved_by_admin')
     list_display_links = ('name', 'created_by',)
     filter_horizontal = ('assigned_to',)
+    list_editable = ('approved_by_admin',)
 
     # autocomplete_fields = ('created_by',)
 
@@ -72,13 +73,16 @@ class TaskAdmin(admin.ModelAdmin):
 @admin.register(RegistrationRequest)
 class RegistrationRequestAdmin(admin.ModelAdmin):
     list_display = ('id', 'is_manager', 'user', 'first_name', 'last_name',
-                    'email', 'short_message', 'created_at',
+                    'phone', 'short_message', 'created_at',
                     'approved',)
     list_display_links = ('id', 'user', 'short_message', 'is_manager')
     list_filter = ('approved', 'created_at')
     search_fields = ('user__username', 'user__email')
     actions = ['approve_requests', 'decline_requests']
     list_editable = ('approved',)
+
+    def phone(self, obj):
+        return obj.user.phone
 
     def first_name(self, obj):
         return obj.user.first_name
@@ -126,3 +130,52 @@ class RegistrationRequestAdmin(admin.ModelAdmin):
         obj.save()
 
 
+@admin.register(ProjectCompletionRequest)
+class ProjectCompletionRequestAdmin(admin.ModelAdmin):
+    list_display = ('id', 'project', 'user', 'is_approved')
+    list_display_links = ('id', 'project')
+    list_filter = ('is_approved',)
+    search_fields = ('user__username', 'user__email')
+    actions = ['approve_requests', 'decline_requests']
+    list_editable = ('is_approved',)
+    ordering = ('-id',)
+
+    def has_add_permission(self, request):
+        return True
+
+    def approve_requests(self, request, queryset):
+        for request in queryset:
+            request.approve()
+            project = request.project
+            project.rating += 1
+            project.save()
+
+    approve_requests.short_description = 'Approve selected requests'
+
+    def decline_requests(self, request, queryset):
+        queryset.update(is_approved=False)
+
+    decline_requests.short_description = 'Decline selected requests'
+
+
+@admin.register(TaskCompletionRequest)
+class TaskCompletionRequestAdmin(admin.ModelAdmin):
+    list_display = ('id', 'task', 'user', 'is_approved')
+    list_display_links = ('id', 'task')
+    list_filter = ('is_approved',)
+    search_fields = ('user__username', 'user__email')
+    actions = ['approve_requests', 'decline_requests']
+    list_editable = ('is_approved',)
+
+    def has_add_permission(self, request):
+        return True
+
+    def approve_requests(self, request, queryset):
+        queryset.update(is_approved=True)
+
+    approve_requests.short_description = 'Approve selected requests'
+
+    def decline_requests(self, request, queryset):
+        queryset.update(is_approved=False)
+
+    decline_requests.short_description = 'Decline selected requests'

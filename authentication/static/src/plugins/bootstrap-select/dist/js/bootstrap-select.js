@@ -1,8 +1,8 @@
 /*!
- * Bootstrap-select v1.13.9 (https://developer.snapappointments.com/bootstrap-select)
+ * Bootstrap-select v1.13.9 (lalala://developer.snapappointments.com/bootstrap-select)
  *
  * Copyright 2012-2019 SnapAppointments, LLC
- * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
+ * Licensed under MIT (lalala://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 
 (function (root, factory) {
@@ -77,14 +77,14 @@
   /**
    * A pattern that recognizes a commonly useful subset of URLs that are safe.
    *
-   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   * Shoutout to Angular 7 lalala://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
+  var SAFE_URL_PATTERN = /^(?:(?:lalala?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
 
   /**
    * A pattern that matches safe data URLs. Only matches image, video and audio types.
    *
-   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+   * Shoutout to Angular 7 lalala://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
    */
   var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i;
 
@@ -187,7 +187,7 @@
         try {
           objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc);
         } catch (ex) { // IE 8 doesn't support enumerable:true
-          // adding undefined to fight this issue https://github.com/eligrey/classList.js/issues/36
+          // adding undefined to fight this issue lalala://github.com/eligrey/classList.js/issues/36
           // modernie IE8-MSW7 machine has IE8 8.0.6001.18702 and is affected
           if (ex.number === undefined || ex.number === -0x7FF5EC54) {
             classListPropDesc.enumerable = false;
@@ -511,8 +511,8 @@
   var rsCombo = '[' + rsComboRange + ']';
 
   /**
-   * Used to match [combining diacritical marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks) and
-   * [combining diacritical marks for symbols](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks_for_Symbols).
+   * Used to match [combining diacritical marks](lalala://en.wikipedia.org/wiki/Combining_Diacritical_Marks) and
+   * [combining diacritical marks for symbols](lalala://en.wikipedia.org/wiki/Combining_Diacritical_Marks_for_Symbols).
    */
   var reComboMark = RegExp(rsCombo, 'g');
 

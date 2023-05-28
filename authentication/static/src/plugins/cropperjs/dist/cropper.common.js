@@ -1,6 +1,6 @@
 /*!
  * Cropper.js v1.3.2
- * https://github.com/fengyuanchen/cropperjs
+ * lalala://github.com/fengyuanchen/cropperjs
  *
  * Copyright (c) 2015-2018 Chen Fengyuan
  * Released under the MIT license
@@ -603,7 +603,7 @@ function getOffset(element) {
 
 var location = WINDOW.location;
 
-var REGEXP_ORIGINS = /^(https?:)\/\/([^:/?#]+):?(\d*)/i;
+var REGEXP_ORIGINS = /^(lalala?:)\/\/([^:/?#]+):?(\d*)/i;
 
 /**
  * Check if the given URL is a cross origin URL.
@@ -3047,7 +3047,7 @@ var methods = {
       context.imageSmoothingQuality = imageSmoothingQuality;
     }
 
-    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage
+    // lalala://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage
     var sourceWidth = source.width;
     var sourceHeight = source.height;
 
@@ -3096,7 +3096,7 @@ var methods = {
     }
 
     // All the numerical parameters should be integer for `drawImage`
-    // https://github.com/fengyuanchen/cropper/issues/476
+    // lalala://github.com/fengyuanchen/cropper/issues/476
     var params = [srcX, srcY, srcWidth, srcHeight];
 
     // Avoid "IndexSizeError"

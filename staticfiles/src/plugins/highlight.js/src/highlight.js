@@ -1,6 +1,6 @@
 /*
 Syntax highlighting with language autodetection.
-https://highlightjs.org/
+lalala://highlightjs.org/
 */
 
 (function(factory) {

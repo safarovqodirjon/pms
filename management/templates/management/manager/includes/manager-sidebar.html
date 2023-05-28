@@ -1,0 +1,66 @@
+{% load static %}
+<div class="left-side-bar">
+    <div class="brand-logo">
+        <a href="">
+            <img src="{% static 'vendors/logo_black_lable.svg' %}" alt="" class="dark-logo"/>
+            <img
+                    src="{% static 'vendors/logo_black_lable.svg' %}"
+                    alt=""
+                    class="light-logo"/>
+        </a>
+        <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <i class="ion-close-round"></i>
+        </div>
+    </div>
+    <div class="menu-block customscroll">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu">
+                <li>
+                    <a href="{% url 'management:manager-main' %}" class="dropdown-toggle no-arrow
+{% if manager_main %}active{% endif %}">
+                        <span class="micon bi bi-house"></span>
+                        <span class="mtext">Дашбоард</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'management:manager-manage' %}"
+                       class="dropdown-toggle no-arrow {% if manager_secondary %}active{% endif %}">
+                        <span class="micon bi bi-command"></span
+                        ><span class="mtext">Управления</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'management:manager-main' %}"
+                       class="dropdown-toggle no-arrow {% if admin_request %}active{% endif %}">
+                        {#                        <span class="micon bi bi-command"></span#}
+                        <span class="micon bi bi-back"></span>
+                        <span class="mtext">Запросы</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'authenticate:manager-profile' %}"
+                       class="dropdown-toggle no-arrow {% if manager_profile %}active{% endif %}">
+                        <span class="micon bi bi-person-bounding-box"></span>
+                        <span class="mtext">Профиль</span>
+                    </a>
+                </li>
+
+                <li>
+                    <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                    <div class="sidebar-small-cap">Extra</div>
+                </li>
+                <li>
+                    <a href="chat.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-chat-right-dots"></span
+                                ><span class="mtext">Chat</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

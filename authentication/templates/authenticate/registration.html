@@ -9,14 +9,9 @@
                 class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="base/login.html">
-                    {#                    <img src="{% static 'vendors/images/deskapp-logo.svg' %}" alt=""/>#}
                 </a>
             </div>
-            {#            <div class="login-menu">#}
-            {#                <ul>#}
-            {#                    <li><a href="register.html"></a></li>#}
-            {#                </ul>#}
-            {#            </div>#}
+
         </div>
     </div>
     <div
@@ -88,7 +83,6 @@
                             });
                         </script>
 
-
                         <form method="post">
                             {% csrf_token %}
                             <div class="select-role">
@@ -110,7 +104,6 @@
                                 </div>
                             </div>
 
-
                             <div class="input-group custom">
                                 <label>
                                     <input type="text"
@@ -118,7 +111,6 @@
                                            placeholder="Имя"
                                            name="{{ form.first_name.name }}">
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
@@ -128,7 +120,6 @@
                                            placeholder="Фамилия"
                                            name="{{ form.last_name.name }}">
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
@@ -138,18 +129,15 @@
                                            placeholder="Юсернайм"
                                            name="{{ form.username.name }}">
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
                                 <label>
-                                    <input type="email"
+                                    <input type="text"
                                            class="form-control form-control-lg"
-                                           placeholder="Почта"
-                                           name="{{ form.email.name }}"
-                                    >
+                                           placeholder="Номер телефона"
+                                           name="{{ form.phone.name }}">
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
@@ -160,7 +148,6 @@
                                            name="{{ form.password1.name }}"
                                             {% if form.password1.required %} required {% endif %}>
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
@@ -171,7 +158,6 @@
                                            name="{{ form.password2.name }}"
                                             {% if form.password2.required %} required {% endif %}>
                                 </label>
-
                             </div>
 
                             <div class="row">
@@ -184,26 +170,10 @@
                                 <div class="col-sm-6">
                                     <div class="input-group mb-0">
                                         <a class="btn btn-outline-primary btn-lg btn-block"
-                                           href="{% url 'authenticate:login' %}">Войти
-                                        </a>
+                                           href="{% url 'authenticate:login' %}">Войти</a>
                                     </div>
                                 </div>
                             </div>
-
-                            {#                            <div class="row">#}
-                            {#                                <div class="col-sm-12">#}
-                            {#                                    <div class="input-group mb-0">#}
-                            {#                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In#}
-                            {#                                        </button>#}
-                            {#                                    </div>#}
-                            {#                                    <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR#}
-                            {#                                    </div>#}
-                            {#                                    <div class="input-group mb-0">#}
-                            {#                                        <a class="btn btn-outline-primary btn-lg btn-block" href="#">Register#}
-                            {#                                            To Create Account</a>#}
-                            {#                                    </div>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
                         </form>
                     </div>
                 </div>

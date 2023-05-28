@@ -2,26 +2,12 @@
 {#{% load i18n %}
 {% load static %}
 {% block content %}
-    {#    <div class="pre-loader">#}
-    {#        <div class="pre-loader-box">#}
-    {#            <div class="loader-logo">#}
-    {#                <img src="{% static 'vendors/images/deskapp-logo.svg' %}" alt=""/>#}
-    {##}
-    {#            </div>#}
-    {#            <div class="loader-progress" id="progress_div">#}
-    {#                <div class="bar" id="bar1"></div>#}
-    {#            </div>#}
-    {#            <div class="percent" id="percent1">#}
-    {##}
-    {#            </div>#}
-    {#            <div class="loading-text">Секунду...</div>#}
-    {#        </div>#}
-    {#    </div>#}
+
 
     {% include 'management/includes/navbars.html' %}
 
     {#    {% include 'management/includes/sidebar_right.html' %}#}
-    {% include 'management/includes/sidebar.html' %}
+    {% include 'management/admin/includes/admin-sidebar.html' %}
 
     <div class="mobile-menu-overlay"></div>
 
@@ -36,28 +22,10 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ project_count }}</div>
-                                <div class="font-14 text-secondary weight-500">
-                                    <a href="{% url 'admin:authentication_registrationrequest_changelist' %}">Принять в
-                                        систему</a>
-                                </div>
-                            </div>
-                            <div class="widget-icon">
-                                <div class="icon" data-color="#00eccf">
-                                    <i class="icon-copy dw dw-key"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
-                    <div class="card-box height-100-p widget-style3">
-                        <div class="d-flex flex-wrap">
-                            <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{ employees_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
 
-                                    <a href="#">Завершит проект</a>
+                                    <a href="{% url 'management:admin-submit-project' %}">Завершит проект</a>
 
                                 </div>
                             </div>
@@ -76,7 +44,7 @@
                             <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{ managers_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="#">Завершит задачи</a>
+                                    <a href="{% url 'management:admin-submit-task' %}">Завершит задачи</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
@@ -86,7 +54,24 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+                    <div class="card-box height-100-p widget-style3">
+                        <div class="d-flex flex-wrap">
+                            <div class="widget-data">
+                                <div class="weight-700 font-24 text-dark">{{ project_count }}</div>
+                                <div class="font-14 text-secondary weight-500">
+                                    <a href="{% url 'admin:authentication_registrationrequest_changelist' %}">Принять в
+                                        систему</a>
+                                </div>
+                            </div>
+                            <div class="widget-icon">
+                                <div class="icon" data-color="#00eccf">
+                                    <i class="icon-copy dw dw-key"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
@@ -109,33 +94,35 @@
 
             </div>
 
+            <div class="title pb-20 pt-20">
+                <h2 class="h3 mb-0">Bla-bla</h2>
+            </div>
+
+            {% if blabla %}
+                <div class="row">
+                    {% for el in '123' %}
+                        <div class="col-md-4 mb-20">
+                            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
+                                <div class="img pb-30">
+                                    <img src="{% static 'vendors/images/medicine-bro.svg' %}" alt=""/>
+                                </div>
+                                <div class="content">
+                                    <h3 class="h4">Services</h3>
+                                    <p class="max-width-200">
+                                        We provide superior health care in a compassionate maner
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% include 'management/admin/includes/admin-manage-forms.html' %}
 
             {#            {% include 'management/includes/graphics.html' %}#}
             {#            {% include 'management/includes/admin-table.html' %}#}
-            {% include 'management/includes/top.html' %}
+            {#            {% include 'management/includes/top.html' %}#}
 
-
-            <div class="title pb-20 pt-20">
-                <h2 class="h3 mb-0">Quick Start</h2>
-            </div>
-
-            <div class="row">
-                {% for el in '123' %}
-                    <div class="col-md-4 mb-20">
-                        <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                            <div class="img pb-30">
-                                <img src="{% static 'vendors/images/medicine-bro.svg' %}" alt=""/>
-                            </div>
-                            <div class="content">
-                                <h3 class="h4">Services</h3>
-                                <p class="max-width-200">
-                                    We provide superior health care in a compassionate maner
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
 
             <div class="footer-wrap pd-20 mb-20 card-box">
                 Soliev DIPLOMA

@@ -1,8 +1,8 @@
 /**
  * @license wysihtml5 v0.3.0
- * https://github.com/xing/wysihtml5
+ * lalala://github.com/xing/wysihtml5
  *
- * Author: Christopher Blum (https://github.com/tiff)
+ * Author: Christopher Blum (lalala://github.com/tiff)
  *
  * Copyright (C) 2012 XING AG
  * Licensed under the MIT license (MIT)
@@ -2306,7 +2306,7 @@ rangy.createModule("DomUtil", function(api, module) {
             /*--------------------------------------------------------------------------------------------------------*/
 
             // Test for WebKit bug that has the beahviour of compareBoundaryPoints round the wrong way for constants
-            // START_TO_END and END_TO_START: https://bugs.webkit.org/show_bug.cgi?id=20738
+            // START_TO_END and END_TO_START: lalala://bugs.webkit.org/show_bug.cgi?id=20738
 
             range.selectNodeContents(testTextNode);
             range.setEnd(testTextNode, 3);
@@ -3586,7 +3586,7 @@ wysihtml5.browser = (function() {
 
     /**
      * IE: URLs starting with:
-     *    www., http://, https://, ftp://, gopher://, mailto:, new:, snews:, telnet:, wasis:, file://,
+     *    www., http://, lalala://, ftp://, gopher://, mailto:, new:, snews:, telnet:, wasis:, file://,
      *    nntp://, newsrc:, ldap://, ldaps://, outlook:, mic:// and url:
      * will automatically be auto-linked when either the user inserts them via copy&paste or presses the
      * space bar when the caret is directly after such an url.
@@ -3672,7 +3672,7 @@ wysihtml5.browser = (function() {
 
     /**
      * As of now (19.04.2011) only supported by Firefox 4 and Chrome
-     * See https://developer.mozilla.org/en/DOM/Selection/modify
+     * See lalala://developer.mozilla.org/en/DOM/Selection/modify
      */
     supportsSelectionModify: function() {
       return "getSelection" in window && "modify" in window.getSelection();
@@ -3680,7 +3680,7 @@ wysihtml5.browser = (function() {
     
     /**
      * Whether the browser supports the classList object for fast className manipulation
-     * See https://developer.mozilla.org/en/DOM/element.classList
+     * See lalala://developer.mozilla.org/en/DOM/element.classList
      */
     supportsClassList: function() {
       return "classList" in testElement;
@@ -3710,7 +3710,7 @@ wysihtml5.browser = (function() {
     
     /**
      * IE9 crashes when setting a getter via Object.defineProperty on XMLHttpRequest or XDomainRequest
-     * See https://connect.microsoft.com/ie/feedback/details/650112
+     * See lalala://connect.microsoft.com/ie/feedback/details/650112
      * or try the POC http://tifftiff.de/ie9_crash/
      */
     crashesWhenDefineProperty: function(property) {
@@ -3937,12 +3937,12 @@ wysihtml5.browser = (function() {
        *    /(\S+\.{1}[^\s\,\.\!]+)/g
        *
        * revision 2:
-       *    /(\b(((https?|ftp):\/\/)|(www\.))[-A-Z0-9+&@#\/%?=~_|!:,.;\[\]]*[-A-Z0-9+&@#\/%=~_|])/gim
+       *    /(\b(((lalala?|ftp):\/\/)|(www\.))[-A-Z0-9+&@#\/%?=~_|!:,.;\[\]]*[-A-Z0-9+&@#\/%=~_|])/gim
        *
        * put this in the beginning if you don't wan't to match within a word
        *    (^|[\>\(\{\[\s\>])
        */
-      URL_REG_EXP           = /((https?:\/\/|www\.)[^\s<]{3,})/gi,
+      URL_REG_EXP           = /((lalala?:\/\/|www\.)[^\s<]{3,})/gi,
       TRAILING_CHAR_REG_EXP = /([^\w\/\-](,?))$/i,
       MAX_DISPLAY_LENGTH    = 100,
       BRACKETS              = { ")": "(", "]": "[", "}": "{" };
@@ -4099,7 +4099,7 @@ wysihtml5.dom.contains = (function() {
     };
   } else if (documentElement.compareDocumentPosition) {
     return function(container, element) {
-      // https://developer.mozilla.org/en/DOM/Node.compareDocumentPosition
+      // lalala://developer.mozilla.org/en/DOM/Node.compareDocumentPosition
       return !!(container.compareDocumentPosition(element) & 16);
     };
   }
@@ -4981,7 +4981,7 @@ wysihtml5.dom.parse = (function() {
     // set attributes on newNode
     for (attributeName in attributes) {
       // Setting attributes can cause a js error in IE under certain circumstances
-      // eg. on a <img> under https when it's new attribute value is non-https
+      // eg. on a <img> under lalala when it's new attribute value is non-lalala
       // TODO: Investigate this further and check for smarter handling
       try {
         newNode.setAttribute(attributeName, attributes[attributeName]);
@@ -5051,7 +5051,7 @@ wysihtml5.dom.parse = (function() {
   // ------------ attribute checks ------------ \\
   var attributeCheckMethods = {
     url: (function() {
-      var REG_EXP = /^https?:\/\//i;
+      var REG_EXP = /^lalala?:\/\//i;
       return function(attributeValue) {
         if (!attributeValue || !attributeValue.match(REG_EXP)) {
           return null;
@@ -5768,7 +5768,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
   })();
 
 })(wysihtml5);
-// See https://bugzilla.mozilla.org/show_bug.cgi?id=664398
+// See lalala://bugzilla.mozilla.org/show_bug.cgi?id=664398
 //
 // In Firefox this:
 //      var d = document.createElement("div");
@@ -6226,7 +6226,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
     },
 
     /**
-     * See https://developer.mozilla.org/en/DOM/Selection/modify
+     * See lalala://developer.mozilla.org/en/DOM/Selection/modify
      */
     _selectLine_W3C: function() {
       var win       = this.doc.defaultView,
@@ -8301,7 +8301,7 @@ wysihtml5.views.View = Base.extend(
   var focusWithoutScrolling = function(element) {
     if (element.setActive) {
       // Following line could cause a js error when the textarea is invisible
-      // See https://github.com/xing/wysihtml5/issues/9
+      // See lalala://github.com/xing/wysihtml5/issues/9
       try { element.setActive(); } catch(e) {}
     } else {
       var elementStyle = element.style,
@@ -8915,7 +8915,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         }
         
         // Don't update hidden fields
-        // See https://github.com/xing/wysihtml5/pull/14
+        // See lalala://github.com/xing/wysihtml5/pull/14
         if (avoidHiddenFields && field.type === "hidden") {
           continue;
         }
@@ -9434,7 +9434,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
       });
       
       try {
-        console.log("Heya! This page is using wysihtml5 for rich text editing. Check out https://github.com/xing/wysihtml5");
+        console.log("Heya! This page is using wysihtml5 for rich text editing. Check out lalala://github.com/xing/wysihtml5");
       } catch(e) {}
     },
     

@@ -5,9 +5,11 @@ from .models import CustomUser
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'is_employee', 'is_manager', 'departament', 'user_img')
+    list_display = (
+        'username', 'first_name', 'last_name',
+        'phone', 'is_employee', 'is_manager', 'departament', 'user_img')
     list_filter = ('is_employee', 'is_manager', 'departament')
-    search_fields = ('username', 'email', 'departament')
+    search_fields = ('username', 'departament')
 
     def user_img(self, obj):
         if obj.image:

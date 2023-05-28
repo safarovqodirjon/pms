@@ -1,0 +1,26 @@
+<table class="data-table table nowrap">
+    <thead>
+    <tr>
+        <th>Имя сотрудника</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+        <tr>
+            <td>{{ employee.username }}</td>
+            <td>
+                <a href="{% url 'management:assign_employee_to_project' project.id employee.id %}">
+                        <span class="badge" data-bgcolor="#e7ebf5" data-color="#265ed7">
+                            Добавить
+                        </span>
+                </a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="2">Нет доступных сотрудников</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

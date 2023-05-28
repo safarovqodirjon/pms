@@ -1,6 +1,6 @@
 /**
 * asColorPicker v0.4.4
-* https://github.com/amazingSurge/jquery-asColorPicker
+* lalala://github.com/amazingSurge/jquery-asColorPicker
 *
 * Copyright (c) amazingSurge
 * Released under the LGPL-3.0 license

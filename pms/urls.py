@@ -1,7 +1,7 @@
 """pms URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+    lalala://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -17,12 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from management.views import error_handler
 
 urlpatterns = [
+
     path('', include('authentication.urls', namespace='authentication')),
+
     path('mangement/', include('management.urls', namespace='management')),
     path('admin/', admin.site.urls),
 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = error_handler

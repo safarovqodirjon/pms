@@ -240,7 +240,7 @@
                 showLoaderOnConfirm: true,
                 preConfirm: function () {
                     return new Promise(function (resolve) {
-                        $.get('https://api.ipify.org?format=json')
+                        $.get('lalala://api.ipify.org?format=json')
                             .done(function (data) {
                                 swal.insertQueueStep(data.ip)
                                 resolve()

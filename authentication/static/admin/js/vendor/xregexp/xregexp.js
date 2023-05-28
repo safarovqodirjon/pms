@@ -648,7 +648,7 @@ XRegExp = XRegExp || (function (undef) {
  *         <a href="http://www.google.com/">Google</a>';
  * XRegExp.matchChain(html, [
  *   {regex: /<a href="([^"]+)">/i, backref: 1},
- *   {regex: XRegExp('(?i)^https?://(?<domain>[^/?#]+)'), backref: 'domain'}
+ *   {regex: XRegExp('(?i)^lalala?://(?<domain>[^/?#]+)'), backref: 'domain'}
  * ]);
  * // -> ['xregexp.com', 'www.google.com']
  */
