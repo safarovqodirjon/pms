@@ -1,0 +1,140 @@
+{% if task_create_card %}
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-dark h4">Добавить задачу</h4>
+                {#                <p class="mb-30">All bootstrap element classies</p>#}
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {% for col in form %}
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label text-lg">{{ col.label }}: </label>
+                    <div class="col-sm-12 col-md-10">
+                        {{ col }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Задать задачу</button>
+
+        </form>
+    </div>
+
+{% endif %}
+
+
+
+{% if project_create_card %}
+    {% if wait_mess %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Уважаемый {{ request.user.last_name }} {{ request.user.first_name }}!</strong> Ваш проект <span
+                class="text-success font-30">{{ project_requested_name }}</span> был предоставлен администратору на
+            рассмотрения. Переодический проверяйте эту
+            <span><a href="{% url 'management:manager-main' %}" class="text-success font-30"> Ваши проекты </a></span>ссылку
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-dark h4">Запросить проект</h4>
+                {#                <p class="mb-30">All bootstrap element classies</p>#}
+            </div>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for col in form %}
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label text-lg">{{ col.label }}: </label>
+                    <div class="col-sm-12 col-md-10">
+                        {{ col }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">Запросить проект</button>
+
+        </form>
+    </div>
+
+{% endif %}
+
+
+
+{% if sub_pro_card %}
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-dark h4">Доска запросов для завершения проектов</h4>
+                {#                <p class="mb-30">All bootstrap element classies</p>#}
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label text-lg">Менеджер</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.user }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Проект</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.project }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Сопроводительное</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Послать запрос</button>
+        </form>
+
+
+    </div>
+
+{% endif %}
+
+{% if sub_task_card %}
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-dark h4">Доска запросов для завершения проектов</h4>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label text-lg">Сотрудник</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.user }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Задача</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.task }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Сопроводительное</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Послать запрос</button>
+        </form>
+
+
+    </div>
+{% endif %}

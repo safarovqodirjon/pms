@@ -29,23 +29,16 @@ urlpatterns = [
     path('manager-manage-create-tasks/', views.manager_create_task, name='manager-task-create'),
     path('manager-main-delete-tasks/<int:task_id>/', views.manager_delete_task, name='manager-task-delete'),
     path('manager-main-update-tasks/<int:task_id>/', views.manager_update_task, name='manager-task-update'),
-
     path('manager-manage-create-project/', views.manager_create_project, name='manager-create-project'),
 
     # path('manager-submit-completion-request/', views.submit_completion_request, name='submit_completion_request'),
+    # Маршруты для сотрудников
 
-    path('add-employee-to-project/<int:project_id>/', views.add_employee_to_project, name='add_employee_to_project'),
+    # path('main-employer/', views.main_employer, name='main-employer'),
 
-    path('project/<int:project_id>/employee/<int:employee_id>/assign/', views.assign_employee_to_project,
-         name='assign_employee_to_project'),
+    path('employee-main/<str:card>/', views.employee_main, name='employee-main'),
+    path('employee-requests/<str:card>/', views.employee_requests, name='employee-request'),
 
-    # path('main-manager/', views.main_manager, name='main-manager'),
-
-    # Маршруты для работников
-
-    # path('main-employee/', views.main_employee, name='main-employee'),
-    # path('main-manager/', views., name='main-manager'),
 ]
 
 handler404 = error_handler
-

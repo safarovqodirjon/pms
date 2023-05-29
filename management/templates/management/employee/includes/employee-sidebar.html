@@ -16,24 +16,25 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="{% url 'management:admin-main' %}" class="dropdown-toggle no-arrow
-{% if admin_main %}active{% endif %}">
+                    <a href="{% url 'management:manager-main' %}" class="dropdown-toggle no-arrow
+{% if manager_main %}active{% endif %}">
                         <span class="micon bi bi-house"></span>
                         <span class="mtext">Дашбоард</span>
                     </a>
                 </li>
-                <li>
-                    <a href="{% url 'management:admin-manage' %}"
-                       class="dropdown-toggle no-arrow {% if admin_manage %}active{% endif %}">
-                        <span class="micon bi bi-command"></span
-                        ><span class="mtext">Управления</span>
-                    </a>
-                </li>
+
+{#                <li>#}
+{#                    <a href="{% url 'management:manager-manage' %}"#}
+{#                       class="dropdown-toggle no-arrow {% if manager_secondary %}active{% endif %}">#}
+{#                        <span class="micon bi bi-command"></span#}
+{#                        ><span class="mtext">Управления</span>#}
+{#                    </a>#}
+{#                </li>#}
 
 
                 <li>
-                    <a href="{% url 'authenticate:admin-profile' %}"
-                       class="dropdown-toggle no-arrow {% if admin_profile %}active{% endif %}">
+                    <a href="{% url 'authenticate:manager-profile' %}"
+                       class="dropdown-toggle no-arrow {% if manager_profile %}active{% endif %}">
                         <span class="micon bi bi-person-bounding-box"></span>
                         <span class="mtext">Профиль</span>
                     </a>
@@ -43,19 +44,12 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <div class="sidebar-small-cap"></div>
+                    <div class="sidebar-small-cap">Extra</div>
                 </li>
                 <li>
-                    <a href="{% url 'admin:index' %}" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-archive-fill"></span
-                                ><span class="mtext">Администрация</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{% url 'management:employee-main' 'projects' %}" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-emoji-smile"></span
-                                ><span class="mtext">Запасной</span>
+                    <a href="chat.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-chat-right-dots"></span
+                                ><span class="mtext">Chat</span>
                     </a>
                 </li>
             </ul>

@@ -56,7 +56,7 @@ def login_view(request):
                     registration_request = user.registration_request
                     if registration_request and registration_request.approved:
                         login(request, user)
-                        return redirect('management:manager-main')
+                        return redirect('management:employee-main', card='project')
                     else:
                         return redirect('authenticate:register-wait')
                 elif user.is_manager:

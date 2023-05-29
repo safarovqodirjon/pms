@@ -3,52 +3,57 @@
 {% load static %}
 {% block content %}
 
-
     {% include 'management/includes/navbars.html' %}
 
-    {% include 'management/admin/includes/admin-sidebar.html' %}
+    {% include 'management/employee/includes/employee-sidebar.html' %}
 
     <div class="mobile-menu-overlay"></div>
-
     <div class="main-container">
         <div class="xs-pd-20-10 pd-ltr-20">
             <div class="title pb-20">
-                <h2 class="h3 mb-0">Дашбоард администратора</h2>
+                <h2 class="h3 mb-0">Дашбоард {{ role }}а</h2>
             </div>
-            <div class="row pb-10">
 
+            <div class="row pb-10">
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{ project_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="{% url 'management:admin-main' %}">Проекты</a>
+                                    <a href="{% url 'management:manager-main' %}">Проекты</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" {% url 'management:admin-main' %}> <i
-                                            class="icon-copy dw dw-folder-65"></i></a>
+                                    <a class="text-warning" href="{% url 'management:manager-main' %}">
+                                        <i class="icon-copy dw dw-folder-65"></i>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ managers_count }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ tasks_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="{% url 'management:admin-managers' %}">Менеджеры</a>
+
+                                    <a href="{% url 'management:manager-task-list' %}">Задачи</a>
+
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" href="{% url 'management:admin-managers' %}"><i
-                                            class="icon-copy dw dw-user1"></i></a>
+                                    <a class="text-warning" href="{% url 'management:manager-task-list' %}">
+                                        <span class="icon-copy dw dw-list3"></span>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -62,32 +67,37 @@
                                 <div class="weight-700 font-24 text-dark">{{ employees_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
 
-                                    <a href="{% url 'management:admin-employee' %}">Сотрудники</a>
+                                    <a href="{% url 'management:manager-employee' %}">Мои сотрудники</a>
 
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" href="{% url 'management:admin-employee' %}"> <span
-                                            class="icon-copy ti-user"></span>
-                                    </a></div>
+                                    <a class="text-warning" href="{% url 'management:manager-employee' %}">
+                                        <span class="icon-copy ti-user"></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ admins_count }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ 0 }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="#">Администраторы</a>
+                                    <a href="#">Запросы</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" href="#"><span class="icon-copy ti-crown"></span></a>
+                                    <a class="text-warning" href="#">
+                                        <span class="icon-copy ti-crown"></span>
+
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -95,17 +105,14 @@
                 </div>
             </div>
 
-            {% include 'management/includes/graphics.html' %}
-            {% include 'management/admin/includes/admin-table.html' %}
-
-            {#            {% include 'management/includes/top.html' %}#}
-
+            {% include 'management/manager/includes/manager-table.html' %}
 
             <div class="footer-wrap pd-20 mb-20 card-box">
                 Квалификационная работа
                 Система управления задачами
                 - сайт, созданный под руководством Устода Солиева Одилхуджы и Худойбердиева Хуршеда.
             </div>
+
         </div>
     </div>
 

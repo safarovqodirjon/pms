@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from .businesslog.admin import AdminCalculator
@@ -57,7 +58,7 @@ def admin_managers(request):
         'admins_count': dryness_list['admins_count'],
         'project_count': dryness_list['project_count'],
 
-        'managers_table': employees_table['custom_users_managers'],
+        'managers_table': employees_table['custom_users_managers_top'],
 
         'manager_card': True,
     }
@@ -155,7 +156,7 @@ def admin_employee(request):
 
         'projects_table': projects['projects'],
         'employees_table': employees_table['custom_users'],
-        'employee_card': True,
+        # 'employee_card': True,
     }
     return render(request, 'management/admin/admin-main.html', context=context)
 
@@ -353,35 +354,58 @@ def manager_create_project(request):
     return render(request, 'management/manager/manager-secondary.html', context=context)
 
 
-def add_employee_to_project(request, project_id):
-    project = Project.objects.get(id=project_id)
-    employees = CustomUser.objects.filter(is_employee=True)
-    context = {'project': project, 'employees': employees}
-    return render(request, 'management/manager/add_employee.html', context)
+@login_required
+def employee_main(request, card):
+    current_user = request.user
+    projects = Project.objects.filter(assigned_to=current_user)
+    tasks = Task.objects.filter(assigned_to=current_user)
+    other_users = CustomUser.objects.filter(
+        Q(assigned_tasks__in=tasks) & ~Q(id=current_user.id)
+    ).distinct()
+    projects = Project.objects.filter(tasks__in=tasks)
+    managers = CustomUser.objects.filter(created_tasks__in=tasks, is_manager=True).distinct()
+
+    context = {
+        'employees': CustomUser.objects.all(),
+        'projects': projects,
+        'project_count': Project.objects.all().count(),
+        'card': card,
+        'other_users': other_users,
+        'side_dash': True,
+        'other_users_count': other_users.count(),
+        'task_count': tasks.count(),
+        'tasks': tasks,
+
+    }
+
+    return render(request, template_name='management/base/jahongir/main.html', context=context)
 
 
-def assign_employee_to_project(request, project_id, employee_id):
-    project = get_object_or_404(Project, id=project_id)
-    employee = get_object_or_404(CustomUser, id=employee_id, is_employee=True)
-    project.assigned_to.add(employee)
-    return redirect('management:manager-main')
+@login_required
+def employee_requests(request, card):
+    current_user = request.user
+    projects = Project.objects.filter(assigned_to=current_user)
+    tasks = Task.objects.filter(assigned_to=current_user)
+    other_users = CustomUser.objects.filter(
+        Q(assigned_tasks__in=tasks) & ~Q(id=current_user.id)
+    ).distinct()
+    projects = Project.objects.filter(tasks__in=tasks)
+    managers = CustomUser.objects.filter(created_tasks__in=tasks, is_manager=True).distinct()
+    print(other_users.count())
 
+    context = {
+        'employees': CustomUser.objects.all(),
+        'projects': projects,
+        'project_count': Project.objects.all().count(),
+        'card': card,
+        'other_users': other_users,
+        'other_users_count': other_users.count(),
+        'tasks': tasks,
+        'tasks_count': tasks.count(),
+        'side_req': True,
+    }
 
-# @login_required
-# def admin_main(request):
-#     dryness_list = AdminCalculator.count_dryness()
-#     projects = AdminCalculator.project_list()
-#
-#     context = {
-#         'admin_main': True,
-#         'employees_count': dryness_list['employees_count'],
-#         'managers_count': dryness_list['managers_count'],
-#         'admins_count': dryness_list['admins_count'],
-#         'project_count': dryness_list['project_count'],
-#
-#         'projects_table': projects['projects'],
-#     }
-#     return render(request, 'management/main_admin.html', context=context)
+    return render(request, template_name='management/base/jahongir/requtest.html', context=context)
 
 
 def error_handler(request, exception):

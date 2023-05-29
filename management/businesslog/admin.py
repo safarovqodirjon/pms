@@ -1,5 +1,7 @@
 from authentication.models import CustomUser, RegistrationRequest
 from management.models import Project
+
+
 # import plotly.express as px
 # import pandas as pd
 # import plotly.graph_objects as go
@@ -71,8 +73,11 @@ class AdminCalculator:
     def user_list():
         custom_users = CustomUser.objects.filter(is_superuser=False, is_manager=False).all()
         custom_users_managers = CustomUser.objects.filter(is_superuser=False, is_manager=True).all()
+        custom_users_managers_top = CustomUser.objects.filter(is_superuser=False, is_manager=True).order_by('-rate')[:3]
+
         context = {
             'custom_users': custom_users,
             'custom_users_managers': custom_users_managers,
+            'custom_users_managers_top': custom_users_managers_top,
         }
         return context

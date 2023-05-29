@@ -1,0 +1,78 @@
+{% extends 'management/base/jahongir/base.html' %}
+<!-- CONTENT -->
+{% block content %}
+    <section id="content">
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+            <input type="checkbox" id="switch-mode" hidden>
+            <label for="switch-mode" class="switch-mode"></label>
+            <a href="#" class="notification">
+                <i class='bx bxs-bell'></i>
+                <span class="num">8</span>
+            </a>
+            <a href="#" class="profile">
+                <img src="{% if request.user.image %}{{ request.user.image.url }}{% endif %}">
+            </a>
+        </nav>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Дашбоард</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Дашбоард</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Сотрудника</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <ul class="box-info">
+                <li>
+                    <a href="{% url 'management:employee-main' 'projects' %}"><i
+                            class='bx bxs-calendar-check'></i></a>
+                    <span class="text">
+						<h3>{{ project_count }}</h3>
+						<a href="{% url 'management:employee-main' 'projects' %}">Проекты</a>
+					</span>
+                </li>
+                <li>
+                    <a href="{% url 'management:employee-main' 'tasks' %}"><i class='bx bxs-chat'
+                                                                              style="color: orange; background-color: rgba(116,208,204,0.97)"></i></a>
+                    <span class="text">
+						<h3>{{ task_count }}</h3>
+						<a href="{% url 'management:employee-main' 'tasks' %}">Задачи</a>
+					</span>
+                </li>
+                <li>
+                    <a href="{% url 'management:employee-main' 'colab' %}"><i class='bx bxs-calendar-check'
+                                                                              style="color: green; background-color: rgba(116,208,204,0.97)"></i></a>
+                    <span class="text">
+						<h3>{{ other_users_count }}</h3>
+						<a href="{% url 'management:employee-main' 'colab' %}">Колеги</a>
+					</span>
+                </li>
+
+
+            </ul>
+
+
+            {% include 'management/base/jahongir/includes/tables.html' %}
+        </main>
+        <!-- MAIN -->
+    </section>
+{% endblock %}
+<!-- CONTENT -->
