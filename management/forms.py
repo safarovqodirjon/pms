@@ -105,6 +105,21 @@ class ProjectCompletionRequestForm(forms.ModelForm):
         return instance
 
 
+class ProjectCompletionManagerRequestForm(forms.ModelForm):
+    project = forms.ModelChoiceField(queryset=Project.objects.all(), empty_label='Выберете проект',
+                                     widget=forms.Select(attrs={'class': 'custom-select col-12'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg'}),
+                                  label='Описание', required=False)
+
+    class Meta:
+        model = ProjectCompletionRequest
+        fields = ['project', 'description']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['project'].widget.attrs.update({'class': 'form-control form-control-lg'})
+
+
 class TaskCompletionRequestForm(forms.ModelForm):
     task = forms.ModelChoiceField(queryset=Task.objects.all(), empty_label='Выберите задачу',
                                   widget=forms.Select(attrs={'class': 'custom-select col-12'}))

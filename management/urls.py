@@ -31,7 +31,7 @@ urlpatterns = [
     path('manager-main-update-tasks/<int:task_id>/', views.manager_update_task, name='manager-task-update'),
     path('manager-manage-create-project/', views.manager_create_project, name='manager-create-project'),
 
-    # path('manager-submit-completion-request/', views.submit_completion_request, name='submit_completion_request'),
+    path('manager-submit-completion-request/', views.manger_submit_completion_request_pro, name='manger_submit_completion_request_pro'),
     # Маршруты для сотрудников
 
     # path('main-employer/', views.main_employer, name='main-employer'),

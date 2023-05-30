@@ -8,7 +8,8 @@ from .models import Project, CustomUser
 from .decorators import superuser_required, manager_required
 from django.urls import reverse
 from .models import ProjectCompletionRequest
-from .forms import ProjectCompletionRequestForm, TaskCompletionRequestForm, Task, TaskForm, ProjectForm
+from .forms import ProjectCompletionRequestForm, TaskCompletionRequestForm, Task, TaskForm, ProjectForm, \
+    ProjectCompletionManagerRequestForm
 
 
 # Create your views here.
@@ -351,6 +352,33 @@ def manager_create_project(request):
         'tasks_count': dryness_list['tasks_count'],
         'form': form,
     }
+    return render(request, 'management/manager/manager-secondary.html', context=context)
+
+
+@login_required
+@manager_required
+def manger_submit_completion_request_pro(request):
+    if request.method == 'POST':
+        form = ProjectCompletionManagerRequestForm(request.POST)
+        if form.is_valid():
+            completion_request = form.save(commit=False)
+            completion_request.user = request.user  # Значение текущего пользователя
+            completion_request.description = form.cleaned_data['description']
+            completion_request.save()
+            redirect_url = request.META.get('HTTP_REFERER')
+            return redirect(redirect_url)
+
+    else:
+        form = ProjectCompletionManagerRequestForm(
+            initial={'user': request.user})  # Установка начального значения для поля user
+
+    context = {
+        'admin_manage': True,
+        'role': 'менеджер',
+        'sub_pro_card_manger': True,
+        'form': form,
+    }
+
     return render(request, 'management/manager/manager-secondary.html', context=context)
 
 

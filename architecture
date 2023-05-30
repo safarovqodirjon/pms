@@ -25,3 +25,19 @@ subtask.html: шаблон страницы подзадачи с формой �
 Административный интерфейс:
 Возможность просмотра и изменения данных, созданных пользователями приложения, через стандартный административный интерфейс Django.
 Это лишь примерная архитектура, которую можно доработать и улучшить в зависимости от требований и задач проекта.
+
+
+import os
+import sys
+
+# assuming your django settings file is at '/home/qoirjon/mysite/mysite/settings.py'
+# and your manage.py is is at '/manage.py'
+path = '/home/qoirjon/psm'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'pms.settings'
+
+# then:
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
