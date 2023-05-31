@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'management/base/base.html' %}
+
+{% block content %}
+    <div class="error-page d-flex align-items-center flex-wrap justify-content-center pd-20">
+        <div class="pd-10">
+            <div class="error-page-wrap text-center">
+                <h1>404</h1>
+                <h3>Такой страницы нет</h3>
+                <p>
+                    Извините, доступ к странице, которую вы ищете, невозможен.
+                </p>
+                <div class="pt-20 mx-auto max-width-200">
+                    <a href="{% url 'authenticate:login' %}" class="btn btn-primary btn-block btn-lg">Вернутся назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

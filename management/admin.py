@@ -72,9 +72,9 @@ class TaskAdmin(admin.ModelAdmin):
 # request admin
 @admin.register(RegistrationRequest)
 class RegistrationRequestAdmin(admin.ModelAdmin):
-    list_display = ('id', 'is_manager', 'user', 'first_name', 'last_name',
+    list_display = ('id', 'approved', 'is_manager', 'user', 'first_name', 'last_name',
                     'phone', 'short_message', 'created_at',
-                    'approved',)
+                    )
     list_display_links = ('id', 'user', 'short_message', 'is_manager')
     list_filter = ('approved', 'created_at')
     search_fields = ('user__username', 'user__email')
@@ -116,12 +116,12 @@ class RegistrationRequestAdmin(admin.ModelAdmin):
     def approve_requests(self, request, queryset):
         queryset.update(approved=True)
 
-    approve_requests.short_description = 'Approve selected requests'
+    approve_requests.short_description = 'Одобрить выбранные'
 
     def decline_requests(self, request, queryset):
         queryset.update(declined=True)
 
-    decline_requests.short_description = 'Decline selected requests'
+    decline_requests.short_description = 'Отказать выбранные'
 
     def has_add_permission(self, request):
         return False if request.user.is_authenticated else True

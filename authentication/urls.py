@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from management.views import admin_main, error_handler
+from django.conf.urls import handler404
+from .views import page_not_found
 
 app_name = 'authenticate'
 
@@ -19,4 +21,3 @@ urlpatterns = [
 
 ]
 
-handler404 = error_handler

@@ -5,9 +5,9 @@
 {% endblock %}
 {% block content %}
 
+    
 
-    <div
-            class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 col-lg-7">
@@ -21,15 +21,13 @@
                         <form method="post">
                             {% csrf_token %}
 
-
                             <div class="input-group custom">
                                 <label>
                                     <input type="text"
                                            class="form-control form-control-lg"
-                                           placeholder="Юсернайм"
+                                           placeholder="Юзернейм"
                                            name="{{ form.username.name }}">
                                 </label>
-
                             </div>
 
                             <div class="input-group custom">
@@ -44,24 +42,24 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="input-group mb-2">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Войти
-                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Войти</button>
                                     </div>
                                 </div>
-
 
                                 <div class="col-sm-6">
                                     <div class="input-group mb-0">
                                         <a class="btn btn-outline-primary btn-lg btn-block"
-                                           href="{% url 'authenticate:register' %}">Регистрация
-                                        </a>
+                                           href="{% url 'authenticate:register' %}">Регистрация</a>
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 

@@ -2,13 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import CustomAuthenticationForm, UserRegisterForm, ProfileForm
 from django.views.decorators.http import require_http_methods
-from django.shortcuts import render, redirect, get_object_or_404
 from .models import RegistrationRequest, CustomUser
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 from management.businesslog.admin import AdminCalculator
 from management.businesslog.manager import ManagerCalculation
@@ -138,3 +136,7 @@ class RegistrationWaitView(TemplateView):
 def logout_view(request):
     logout(request)
     return redirect('authenticate:login')
+
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound(request, 'authenticate/404.html', status=404)

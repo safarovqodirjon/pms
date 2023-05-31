@@ -41,4 +41,4 @@ urlpatterns = [
 
 ]
 
-handler404 = error_handler
+handler404 = 'authentication.views.page_not_found'

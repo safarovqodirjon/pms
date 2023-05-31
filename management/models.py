@@ -21,8 +21,8 @@ class Project(models.Model):
     approved_by_admin = models.BooleanField(default=False, verbose_name='Одобрено администратором')
 
     class Meta:
-        verbose_name = 'Проект'
-        verbose_name_plural = 'Проекты'
+        verbose_name = 'Проекты менеджера'
+        verbose_name_plural = 'Проекты менеджеров'
 
     def __str__(self):
         return self.name
@@ -47,11 +47,8 @@ class Task(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Задача"
-        verbose_name_plural = "Задачи"
-
-
-# CustomUser = get_user_model()
+        verbose_name = "Задача сотрудника"
+        verbose_name_plural = "Задачи сотрудников"
 
 
 class Manager(models.Model):
@@ -113,6 +110,3 @@ class TaskCompletionRequest(models.Model):
     def approve(self):
         self.is_approved = True
         self.save()
-
-
-
