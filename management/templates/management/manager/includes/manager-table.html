@@ -29,7 +29,6 @@
                         <span class="text-dark font-20">Рейтинг:</span> {{ project.rating }}
                     </div>
 
-
                 </div>
             </div>
         </div>
@@ -54,20 +53,36 @@
                         {{ project.rate }}
                         <div class="weight-600 font-30 text-blue"> {{ task.name }}
                             <span class="text-danger font-20">
-                                ({{ task.status }})
+                               <span class="badge badge-pill text-white" data-bgcolor="#f94449"
+                                     data-color="#265ed7"
+                               >
+
+                                 ({{ task.get_status_display }})
+
+                            </span>
                             </span>
                         </div>
                     </h4>
                     <p class="font-18 max-width-600" style="text-align: justify">
-                        {{ task.description }} <span class="text-danger font-20">(Проект: {{ task.project }})</span>
+                        {{ task.description }}
                     </p>
 
                     <div class="weight-600 font-20 text-blue">
-                        <span class="text-dark">Создан: </span>{{ task.due_date|default:"Нет данных" }}
+                        <span class="text-dark font-20">Проект: </span>{{ task.project|default:"" }}
                     </div>
 
-                    <div class="weight-600 font-30 text-blue">
-                        <span class="text-dark font-20">Сотрудник:</span> {{ task.assigned_to.first.last_name }}
+                    <div class="weight-600 font-20 text-blue">
+                        <span class="text-dark font-20">Доверенный номер: </span>{{ task.assigned_to.first.phone|default:"---" }}
+                    </div>
+                    <div class="weight-600 font-20 text-blue">
+                        <span class="text-dark font-20">Создан: </span>{{ task.due_date|default:"Нет данных" }}
+                    </div>
+
+                    <div class="weight-600 font-20 text-blue">
+                        <span class="text-dark font-20">Сотрудники: </span>
+                        {% for employee in task.assigned_to.all %}
+                            {{ employee.last_name }} {{ employee.first_name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
                     </div>
 
                     <form id="delete-form-{{ task.id }}" action="{% url 'management:manager-task-delete' task.id %}"
@@ -76,7 +91,8 @@
                         <input type="hidden" name="task_id" value="{{ task.id }}">
                     </form>
 
-                    <a class="btn btn-danger" href="#" onclick="confirmDelete({{ task.id }})">Удалить</a>
+                    <a class="btn btn-light btn-link btn-lg text-danger" href="#"
+                       onclick="confirmDelete({{ task.id }})">Удалить</a>
 
                     <script>
                         function confirmDelete(taskId) {
@@ -87,7 +103,8 @@
                         }
                     </script>
 
-                    <a class="btn btn-primary" href="{% url 'management:manager-task-update' task.id %}">Изменить</a>
+                    <a class="btn text-primary btn-light btn-link btn-lg"
+                       href="{% url 'management:manager-task-update' task.id %}">Изменить</a>
 
 
                 </div>
@@ -160,3 +177,4 @@
         </div>
     </div>
 {% endif %}
+

@@ -1,4 +1,5 @@
 from django.http import HttpResponseForbidden
+from django.shortcuts import render
 
 
 def superuser_required(view_func):
@@ -7,7 +8,7 @@ def superuser_required(view_func):
             return view_func(request, *args, **kwargs)
         else:
             # Действия, которые нужно выполнить, если пользователь не является суперпользователем
-            return HttpResponseForbidden('Доступ запрещен')
+            return render(request, 'authenticate/403.html')
 
     return wrapper
 
@@ -18,6 +19,6 @@ def manager_required(view_func):
             return view_func(request, *args, **kwargs)
         else:
             # Действия, которые нужно выполнить, если пользователь не является менеджером
-            return HttpResponseForbidden('Доступ запрещен')
+            return render(request, 'authenticate/403.html')
 
     return wrapper

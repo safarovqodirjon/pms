@@ -357,7 +357,7 @@ def manager_create_project(request):
 
 @login_required
 @manager_required
-def manger_submit_completion_request_pro(request):
+def manager_submit_completion_request_pro(request):
     if request.method == 'POST':
         form = ProjectCompletionManagerRequestForm(request.POST)
         if form.is_valid():
@@ -370,13 +370,14 @@ def manger_submit_completion_request_pro(request):
 
     else:
         form = ProjectCompletionManagerRequestForm(
-            initial={'user': request.user})  # Установка начального значения для поля user
+            initial={'user': request.user})
 
     context = {
         'admin_manage': True,
         'role': 'менеджер',
         'sub_pro_card_manger': True,
         'form': form,
+        'pro_notificate': ManagerCalculation.notificate(request=request)
     }
 
     return render(request, 'management/manager/manager-secondary.html', context=context)
@@ -403,14 +404,18 @@ def employee_main(request, card):
         'other_users_count': other_users.count(),
         'task_count': tasks.count(),
         'tasks': tasks,
+        'role': 'сотрудник'
 
     }
 
-    return render(request, template_name='management/base/jahongir/main.html', context=context)
+    return render(request, template_name='management/employee/employee-main.html', context=context)
+
+
+from django.contrib import messages
 
 
 @login_required
-def employee_requests(request, card):
+def employee_submit_completion_request_task(request):
     current_user = request.user
     projects = Project.objects.filter(assigned_to=current_user)
     tasks = Task.objects.filter(assigned_to=current_user)
@@ -419,21 +424,46 @@ def employee_requests(request, card):
     ).distinct()
     projects = Project.objects.filter(tasks__in=tasks)
     managers = CustomUser.objects.filter(created_tasks__in=tasks, is_manager=True).distinct()
-    print(other_users.count())
+
+    if request.method == 'POST':
+        form = TaskCompletionRequestForm(request.POST, user=request.user)
+        if form.is_valid():
+            try:
+                completion_request = form.save(commit=False)
+                completion_request.user = request.user
+                completion_request.save()
+                redirect_url = request.META.get('HTTP_REFERER')
+                return redirect(redirect_url)
+            except Exception as e:
+                print(f"Произошла ошибка при сохранении формы: {str(e)}")
+                messages.error(request, 'Произошла ошибка. Пожалуйста, проверьте введенные данные.')
+        else:
+            for field_name, errors in form.errors.items():
+                error_message = errors[0]  # Получение первой ошибки для поля
+                messages.error(request, f'Ошибка в поле {field_name}: {error_message}')
+                print(f'Ошибка в поле {field_name}: {error_message}')
+    else:
+        form = TaskCompletionRequestForm(user=request.user)
 
     context = {
+        'employee_manage': True,
+        'sub_pro_card_manger': True,
+        'form': form,
+        'pro_notificate': ManagerCalculation.notificate(request=request),
+        'request_task': True,
+
         'employees': CustomUser.objects.all(),
         'projects': projects,
         'project_count': Project.objects.all().count(),
-        'card': card,
         'other_users': other_users,
+        'side_dash': True,
         'other_users_count': other_users.count(),
+        'task_count': tasks.count(),
         'tasks': tasks,
-        'tasks_count': tasks.count(),
-        'side_req': True,
+        'role': 'сотрудник'
     }
 
-    return render(request, template_name='management/base/jahongir/requtest.html', context=context)
+    return render(request, 'management/employee/employee-main.html', context=context)
 
 
 def error_handler(request, exception):

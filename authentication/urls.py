@@ -1,8 +1,5 @@
 from django.urls import path
 from . import views
-from management.views import admin_main, error_handler
-from django.conf.urls import handler404
-from .views import page_not_found
 
 app_name = 'authenticate'
 
@@ -15,9 +12,9 @@ urlpatterns = [
 
     path('main-admin/profile/', views.admin_profile, name='admin-profile'),
     path('main-manager/profile/', views.manager_profile, name='manager-profile'),
+    path('main-employee/profile/', views.employee_profile, name='employee-profile'),
     # path('main-manager/profile/', views.employee_profile, name='employee-profile'),
 
     path('logout/', views.logout_view, name='logout'),
 
 ]
-

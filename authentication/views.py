@@ -54,7 +54,7 @@ def login_view(request):
                     registration_request = user.registration_request
                     if registration_request and registration_request.approved:
                         login(request, user)
-                        return redirect('management:employee-main', card='project')
+                        return redirect('management:employee-main', card='projects')
                     else:
                         return redirect('authenticate:register-wait')
                 elif user.is_manager:
@@ -129,6 +129,33 @@ def manager_profile(request):
     return render(request, 'management/manager/manager-profile.html', context)
 
 
+@login_required
+def employee_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            user = form.save(commit=False)
+            new_image = request.FILES.get('image')
+            if new_image:
+                # если новое изображение было загружено, сохраняем его в модели пользователя
+                user.image = new_image
+            user.save()
+            return redirect('authenticate:employee-profile')
+    else:
+        form = ProfileForm(instance=user)
+
+    tasks = ManagerCalculation.count_dryness(request=request)
+    assigned_employee = ManagerCalculation.manager_projects(request=request)
+    context = {
+        'form': form,
+        'employee_profile': True,
+        'tasks': tasks['tasks'],
+    }
+
+    return render(request, 'management/employee/employee-profile.html', context)
+
+
 class RegistrationWaitView(TemplateView):
     template_name = 'authenticate/register_wait.html'
 
@@ -140,3 +167,7 @@ def logout_view(request):
 
 def page_not_found(request, exception):
     return HttpResponseNotFound(request, 'authenticate/404.html', status=404)
+
+
+def access_denied(request, exception):
+    return HttpResponseForbidden(request, 'authenticate/403.html', status=404)

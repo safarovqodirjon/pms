@@ -21,12 +21,12 @@
                             <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{ project_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="{% url 'management:manager-main' %}">Проекты</a>
+                                    <a href="{% url 'management:employee-main' 'projects' %}">Проекты</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" href="{% url 'management:manager-main' %}">
+                                    <a class="text-warning" href="{% url 'management:employee-main' 'projects' %}">
                                         <i class="icon-copy dw dw-folder-65"></i>
 
                                     </a>
@@ -41,16 +41,16 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ tasks_count }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ task_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
 
-                                    <a href="{% url 'management:manager-task-list' %}">Задачи</a>
+                                    <a href="{% url 'management:employee-main' 'tasks' %}">Задачи</a>
 
                                 </div>
                             </div>
                             <div class="widget-icon">
                                 <div class="icon" data-color="#00eccf">
-                                    <a class="text-warning" href="{% url 'management:manager-task-list' %}">
+                                    <a class="text-warning" href="{% url 'management:employee-main' 'tasks' %}">
                                         <span class="icon-copy dw dw-list3"></span>
                                     </a>
 
@@ -64,10 +64,10 @@
                     <div class="card-box height-100-p widget-style3">
                         <div class="d-flex flex-wrap">
                             <div class="widget-data">
-                                <div class="weight-700 font-24 text-dark">{{ employees_count }}</div>
+                                <div class="weight-700 font-24 text-dark">{{ other_users_count }}</div>
                                 <div class="font-14 text-secondary weight-500">
 
-                                    <a href="{% url 'management:manager-employee' %}">Мои сотрудники</a>
+                                    <a href="{% url 'management:employee-main' 'colab' %}">Группа</a>
 
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                             <div class="widget-data">
                                 <div class="weight-700 font-24 text-dark">{{ 0 }}</div>
                                 <div class="font-14 text-secondary weight-500">
-                                    <a href="#">Запросы</a>
+                                    <a href="{% url 'management:employee_submit_completion_request_task' %}">Запросы</a>
                                 </div>
                             </div>
                             <div class="widget-icon">
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            {% include 'management/manager/includes/manager-table.html' %}
+            {% include 'management/employee/includes/employee-table.html' %}
 
             <div class="footer-wrap pd-20 mb-20 card-box">
                 Квалификационная работа

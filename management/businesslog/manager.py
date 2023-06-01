@@ -51,7 +51,7 @@ class ManagerCalculation:
         managers_count = CustomUser.objects.filter(registration_request__approved=True, is_manager=True).count()
         projects_count = projects.count()
         tasks_count = tasks.count()
-
+        projects_approved = projects
         context = {
             'employees_count': employees_count,
             'managers_count': managers_count,
@@ -61,3 +61,10 @@ class ManagerCalculation:
         }
 
         return context
+
+    @staticmethod
+    def notificate(request):
+        projects = Project.objects.filter(assigned_to=request.user, approved_by_admin=True)
+        for p in projects:
+            print(p.name, p.rating)
+        return projects

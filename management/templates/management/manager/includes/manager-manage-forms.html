@@ -68,24 +68,18 @@
         <div class="clearfix">
             <div class="pull-left">
                 <h4 class="text-dark h4">Доска запросов для завершения проектов</h4>
-                {#                <p class="mb-30">All bootstrap element classies</p>#}
             </div>
         </div>
+
         <form method="post">
             {% csrf_token %}
-            <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label text-lg">Менеджер</label>
-                <div class="col-sm-12 col-md-10">
-                    {{ form.user }}
-                </div>
-            </div>
-
             <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Проект</label>
                 <div class="col-sm-12 col-md-10">
                     {{ form.project }}
                 </div>
             </div>
+
 
             <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label">Сопроводительное</label>
@@ -106,7 +100,7 @@
     <div class="pd-20 card-box mb-30">
         <div class="clearfix">
             <div class="pull-left">
-                <h4 class="text-dark h4">Доска запросов для завершения проектов</h4>
+                <h4 class="text-dark h4">Доска запросов для завершения задач</h4>
             </div>
         </div>
         <form method="post">

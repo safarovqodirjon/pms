@@ -16,25 +16,17 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="{% url 'management:manager-main' %}" class="dropdown-toggle no-arrow
-{% if manager_main %}active{% endif %}">
+                    <a href="{% url 'management:employee-main' 'projects' %}" class="dropdown-toggle no-arrow
+{% if side_dash %}active{% endif %}">
                         <span class="micon bi bi-house"></span>
                         <span class="mtext">Дашбоард</span>
                     </a>
                 </li>
 
-{#                <li>#}
-{#                    <a href="{% url 'management:manager-manage' %}"#}
-{#                       class="dropdown-toggle no-arrow {% if manager_secondary %}active{% endif %}">#}
-{#                        <span class="micon bi bi-command"></span#}
-{#                        ><span class="mtext">Управления</span>#}
-{#                    </a>#}
-{#                </li>#}
-
 
                 <li>
-                    <a href="{% url 'authenticate:manager-profile' %}"
-                       class="dropdown-toggle no-arrow {% if manager_profile %}active{% endif %}">
+                    <a href="{% url 'authenticate:employee-profile' %}"
+                       class="dropdown-toggle no-arrow {% if employee_profile %}active{% endif %}">
                         <span class="micon bi bi-person-bounding-box"></span>
                         <span class="mtext">Профиль</span>
                     </a>
@@ -44,12 +36,12 @@
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <div class="sidebar-small-cap">Extra</div>
+                    <div class="sidebar-small-cap"></div>
                 </li>
                 <li>
-                    <a href="chat.html" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-chat-right-dots"></span
-                                ><span class="mtext">Chat</span>
+                    <a href="{% url 'authenticate:logout' %}" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-door-open"></span
+                                ><span class="mtext">Выйти</span>
                     </a>
                 </li>
             </ul>

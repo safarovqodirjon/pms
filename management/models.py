@@ -40,7 +40,7 @@ class Task(models.Model):
     priority = models.IntegerField(choices=((1, 'Low'), (2, 'Medium'), (3, 'High')), default=2,
                                    verbose_name='Приоритет')
     status = models.CharField(max_length=20,
-                              choices=(('todo', 'To Do'), ('inprogress', 'In Progress'), ('done', 'Done')),
+                              choices=(('todo', 'Не начат'), ('inprogress', 'В прогрессе'), ('done', 'Завершено')),
                               default='todo', verbose_name='Статус')
 
     def __str__(self):
@@ -68,6 +68,8 @@ class ProjectCompletionRequest(models.Model):
     is_approved = models.BooleanField(default=False, verbose_name='Одобрено')
     description = models.TextField(verbose_name='Описание', blank=True)
     rating = models.IntegerField(verbose_name='Оценка', null=True, blank=True)
+    proof = models.FileField(upload_to='proofs/%Y/%m/%d',
+                             verbose_name='Доказательство', blank=True)
 
     class Meta:
         verbose_name = 'Запрос о завершении проекта'
@@ -84,9 +86,7 @@ class ProjectCompletionRequest(models.Model):
         super().save(*args, **kwargs)
         if self.is_approved and self.rating is not None:
             self.user.rate = self.rating
-            self.project.rating = (self.project.rating * self.project.rating_count + self.rating) / (
-                    self.project.rating_count + 1)
-            self.project.rating_count += 1
+            self.project.rating = self.rating
 
             self.user.save()
             self.project.save()

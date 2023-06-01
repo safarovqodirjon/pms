@@ -1,128 +1,61 @@
 {% load static %}
-{% if project_card %}
-
-    {% for project in projects_table %}
-        <div class="card-box pd-20 height-100-p mb-30">
-            <div class="row align-items-center">
-                <div class="col-md-4 ">
-                    <img src="{% if project.image %}{{ project.image.url }}{% endif %}" alt="">
-                </div>
-                <div class="col-md-8">
-                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                        {{ project.rate }}
-                        <div class="weight-600 font-30 text-blue"> {{ project.name }}
-                            <span class="text-danger font-20">
-                                ({{ project.get_project_status_display }})
-                            </span>
-                        </div>
-                    </h4>
-                    <p class="font-18 max-width-600" style="text-align: justify">
-                        {{ project.description }}
-                    </p>
-
-                    <div class="weight-600 font-20 text-blue">
-                        <span class="text-dark">Срок от </span>{{ project.start_date|default:"Нет данных" }}
-                        <span class="text-dark">до</span> <span class="text-danger">{{ project.end_date }}</span>
-                    </div>
-
-                    <div class="weight-600 font-30 text-danger">
-                        <span class="text-dark font-20">Рейтинг:</span> {{ project.rating }}
-                    </div>
 
 
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-{% endif %}
-{% if task_card %}
-    <div class="title pb-20 pt-20">
-        <h2 class="h3 mb-0">Ваши задачи</h2>
-    </div>
-    {% for task in task_list %}
-
-        <div class="card-box pd-20 height-100-p mb-30">
-            <div class="row align-items-center">
-                <div class="col-md-4 ">
-                    <img src="{% if task.assigned_to.first.image %}{{ task.assigned_to.first.image.url }}
-{% else %}{% static 'vendors/images/medicine-bro.svg' %} {% endif %}"
-                         alt="">
-                </div>
-                <div class="col-md-8">
-                    <h4 class="font-20 weight-500 mb-10 text-capitalize">
-                        {{ project.rate }}
-                        <div class="weight-600 font-30 text-blue"> {{ task.name }}
-                            <span class="text-danger font-20">
-                                ({{ task.status }})
-                            </span>
-                        </div>
-                    </h4>
-                    <p class="font-18 max-width-600" style="text-align: justify">
-                        {{ task.description }} <span class="text-danger font-20">(Проект: {{ task.project }})</span>
-                    </p>
-
-                    <div class="weight-600 font-20 text-blue">
-                        <span class="text-dark">Создан: </span>{{ task.due_date|default:"Нет данных" }}
-                    </div>
-
-                    <div class="weight-600 font-30 text-blue">
-                        <span class="text-dark font-20">Сотрудник:</span> {{ task.assigned_to.first.last_name }}
-                    </div>
-
-                    <form id="delete-form-{{ task.id }}" action="{% url 'management:manager-task-delete' task.id %}"
-                          method="post" style="display: none;">
-                        {% csrf_token %}
-                        <input type="hidden" name="task_id" value="{{ task.id }}">
-                    </form>
-
-                    <a class="btn btn-danger" href="#" onclick="confirmDelete({{ task.id }})">Удалить</a>
-
-                    <script>
-                        function confirmDelete(taskId) {
-                            if (confirm('Вы уверены, что хотите удалить эту задачу?')) {
-                                var form = document.getElementById('delete-form-' + taskId);
-                                form.submit();
-                            }
-                        }
-                    </script>
-
-                    <a class="btn btn-primary" href="{% url 'management:manager-task-update' task.id %}">Изменить</a>
-
-
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-{% endif %}
-{% if employee_card %}
+{% if 'projects' in card %}
+    <div class="table-data">
     <div class="row">
         <div class="col-lg-12 col-md-6 mb-20">
             <div class="card-box pb-10">
-                <div class="h5 pd-20 mb-0">Мои сотрудники</div>
+                <div class="h5 pd-20 mb-0">Проекты со мной</div>
                 <table class="data-table table nowrap">
                     <thead>
                     <tr>
-                        <th class="table-plus">Фото</th>
-                        <th>Имя</th>
-                        <th>Рейтинг</th>
-                        <th>Отдел</th>
-                        <th>Телефон</th>
-                        <th>Почта</th>
+                        <th class="table-plus">Менеджер</th>
+                        <th>Номер менеджера</th>
+                        <th>Проект</th>
+                        <th>Статус</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for employee in employees_table %}
+                    {% for project in projects %}
                         <tr>
                             <td class="table-plus">
-                                {% if employee.image %}
+                                {% if project.image %}
                                     <div class="name-avatar d-flex align-items-center">
                                         <div class="avatar mr-2 flex-shrink-0">
-                                            <a target="_blank" href="{{ employee.image.url }}">
+                                            <a target="_blank" href="{{ project.image.url }}">
 
 
                                                 <img
-                                                        src="{{ employee.image.url }}"
+                                                        src="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                {% if project.assigned_to.first.image %}{{ project.assigned_to.first.image.url }}{% endif %}"
                                                         class="border-radius-150 rounded"
                                                         width="70"
                                                         height="70"
@@ -133,19 +66,15 @@
                                     </div>
                                 {% endif %}
                             </td>
+                            <td>
+                                <a href="">{{ project.assigned_to.first.phone }}</a></a>
+                            </td>
 
                             <td>
-                                <a href="{% url 'admin:authentication_customuser_change' employee.id %}">{{ employee.get_full_name }}</a></a>
+                                <a href="">{{ project.name }}</a></a>
                             </td>
-                            <p>
 
-                            </p>
-
-                            <td>{{ employee.rate }}</td>
-
-                            <td>{{ employee.departament }}</td>
-                            <td>{{ employee.phone }}</td>
-                            <td>{{ employee.email }}</td>
+                            <td>{{ project.project_status }}</td>
 
 
                         </tr>
@@ -153,10 +82,229 @@
                         <tr>
                             <td colspan="6">Нет добавленных сотрудников</td>
                         </tr>
+
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
+{% endif %}
+
+
+
+{% if 'tasks' in card %}
+    <div class="table-data">
+    <div class="row">
+        <div class="col-lg-12 col-md-6 mb-20">
+            <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Сотрудники со мной</div>
+                <table class="data-table table nowrap">
+                    <thead>
+                    <tr>
+                        <th class="table-plus">Фото</th>
+                        <th>Задача</th>
+                        <th>Проект</th>
+                        <th>Крайний срок</th>
+                        <th>Приоритет</th>
+                        <th>Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td class="table-plus">
+                                {% if request.user.image %}
+                                    <div class="name-avatar d-flex align-items-center">
+                                        <div class="avatar mr-2 flex-shrink-0">
+
+
+                                            <img
+                                                    src="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                            {% if request.user.image %}{{ request.user.image.url }}{% endif %}"
+                                                    class="border-radius-150 rounded"
+                                                    width="70"
+                                                    height="70"
+                                                    alt=""
+                                            />
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="">{{ task.name }}</a></a>
+                            </td>
+
+                            <td>
+                                <a href="">{{ task.project }}</a></a>
+                            </td>
+
+                            <td>{{ task.due_date }}</td>
+                            <td>{{ task.status }}</td>
+                            <td>{{ task.get_priority_display }}</td>
+
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">Нет добавленных сотрудников</td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+
+{% if 'colab' in card %}
+
+    <div class="table-data">
+    <div class="row">
+        <div class="col-lg-12 col-md-6 mb-20">
+            <div class="card-box pb-10">
+                <div class="h5 pd-20 mb-0">Сотрудники со мной</div>
+                <table class="data-table table nowrap">
+                    <thead>
+                    <tr>
+                        <th class="table-plus">Фото</th>
+                        <th>Имя</th>
+                        <th>номер</th>
+                        <th>рейтинг</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in other_users %}
+                        <tr>
+                            <td class="table-plus">
+                                {% if user.image %}
+                                    <div class="name-avatar d-flex align-items-center">
+                                        <div class="avatar mr-2 flex-shrink-0">
+
+
+                                            <img
+                                                    src="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                {% if user.image %}{{ user.image.url }}{% endif %}"
+                                                    class="border-radius-150 rounded"
+                                                    width="70"
+                                                    height="70"
+                                                    alt=""
+                                            />
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="">{{ user.last_name }}{{ user.first_name }}</a></a>
+                            </td>
+
+                            <td>
+                                <a href="">{{ user.phone }}</a></a>
+                            </td>
+
+                            <td>
+                                <a href="">{{ user.rate }}</a></a>
+                            </td>
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6">Нет добавленных сотрудников</td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+
+{% if request_task %}
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-dark h4">Доска запросов для завершения задач</h4>
+            </div>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label text-lg">Сотрудник</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.user }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Задача</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.task }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Сопроводительное</label>
+                <div class="col-sm-12 col-md-10">
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Послать запрос</button>
+        </form>
+
+
     </div>
 {% endif %}

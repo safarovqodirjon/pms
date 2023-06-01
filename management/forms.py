@@ -54,8 +54,9 @@ class TaskForm(forms.ModelForm):
     project = forms.ModelChoiceField(queryset=Project.objects.none(), empty_label='Выберете проект',
                                      widget=forms.Select(attrs={'class': 'custom-select col-12'}), label='Проект')
     assigned_to = forms.ModelMultipleChoiceField(queryset=CustomUser.objects.filter(is_employee=True),
-                                                 widget=forms.SelectMultiple(attrs={'class': 'custom-select col-12'}),
-                                                 label='Назначено', to_field_name="username")
+                                                 widget=forms.SelectMultiple(
+                                                     attrs={'class': 'custom-select col-12', 'size': 10}),
+                                                 label='Назначено', to_field_name="last_name")
     due_date = forms.DateField(
         widget=DatePickerInput(attrs={'class': 'form-control'}),
         label='Срок выполнения'
@@ -64,7 +65,7 @@ class TaskForm(forms.ModelForm):
                                  widget=forms.Select(attrs={'class': 'custom-select col-12'}), label='Приоритет')
     status = forms.ChoiceField(choices=(('todo', 'Не начать'), ('inprogress', 'В прогрессе'), ('done', 'Закончено')),
                                widget=forms.Select(attrs={'class': 'custom-select col-12'}), label='Статус')
-    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg'}),
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control form-control-lg', 'rows': 5}),
                                   label='Описание', required=False)
 
     class Meta:
@@ -77,6 +78,7 @@ class TaskForm(forms.ModelForm):
         if user:
             self.fields['project'].queryset = Project.objects.filter(assigned_to=user)
             self.fields['assigned_to'].label_from_instance = lambda obj: f"{obj.last_name} {obj.first_name}"
+            self.fields['assigned_to'].widget.attrs['data-live-search'] = 'true'
 
 
 class ProjectCompletionRequestForm(forms.ModelForm):
@@ -121,7 +123,7 @@ class ProjectCompletionManagerRequestForm(forms.ModelForm):
 
 
 class TaskCompletionRequestForm(forms.ModelForm):
-    task = forms.ModelChoiceField(queryset=Task.objects.all(), empty_label='Выберите задачу',
+    task = forms.ModelChoiceField(queryset=Task.objects.none(), empty_label='Выберите задачу',
                                   widget=forms.Select(attrs={'class': 'custom-select col-12'}))
     user = forms.ModelChoiceField(queryset=CustomUser.objects.filter(is_employee=True),
                                   empty_label='Выберите сотрудника',
@@ -133,9 +135,13 @@ class TaskCompletionRequestForm(forms.ModelForm):
         fields = ['task', 'user', 'description']
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
+        self.fields['task'].queryset = Task.objects.filter(assigned_to=user)
         self.fields['task'].widget.attrs.update({'class': 'form-control form-control-lg'})
         self.fields['user'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        if user:
+            self.fields['user'].initial = user
 
     def save(self, commit=True):
         instance = super().save(commit=False)
